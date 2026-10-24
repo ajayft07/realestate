@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties — Elite Estates</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .properties-page {
+            background: #faf8f4;
+        }
+
+        /* Full Width Grid Layout */
+        .full-width-grid {
+            padding: 20px 0 100px;
+        }
+
+        .grid-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .grid-header h2 {
+            font-size: 2.2rem;
+            color: #070714;
+            font-weight: 700;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 36px;
+        }
+
+        @media (min-width: 1400px) {
+            .container.large { max-width: 1400px; }
+            .properties-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="properties-page">
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="navbar" id="mainNav">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">🏛</div>
+                <div class="logo-text">Elite<span>Estates</span></div>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="properties.html" class="nav-link active">Properties</a></li>
+                <li><a href="/booking.html" class="nav-cta">Book Now</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" onclick="toggleNav()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== PAGE BANNER ===== -->
+<header class="page-banner" style="padding: 130px 0 40px; background: linear-gradient(135deg, #060614 0%, #0d0d2b 50%, #171338 100%);">
+    <div class="container">
+        <div class="page-banner-content text-center">
+            <span class="section-label" style="color: #f0c040;">✦ Curated Portfolio</span>
+            <h1 style="color: #ffffff; margin-bottom: 12px; font-size: clamp(2.5rem, 5vw, 4rem);">Exclusive Villas & Luxury Apartments</h1>
+            <p style="color: rgba(255,255,255,0.85); max-width: 680px; margin: 0 auto; font-size: 1.1rem; line-height: 1.7;">Explore handpicked architectural masterpieces with verified all-inclusive packages, bespoke interior furnishing, and private site visits.</p>
+        </div>
+    </div>
+</header>
+
+<!-- ===== NON-OVERLAYING TOP FILTER BAR ===== -->
+<div class="portfolio-filter-section" style="background: #faf8f4; padding: 28px 0 16px;">
+<div class="container large">
+    <!-- Section Heading & Subtitle -->
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+        <div>
+            <span style="font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #b8860b; display: block; margin-bottom: 4px;">✦ Search & Explore</span>
+            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; color: #070714; margin: 0; line-height: 1.1;">Find Your Dream Residence</h2>
+        </div>
+        <p style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: #555269; margin: 0; max-width: 520px;">Use the filters below to browse luxury villas, penthouses, and sky apartments by location, BHK, and budget.</p>
+    </div>
+
+    <div class="top-filter-bar">
+        <!-- Top Row: Tab Filters & Result Counter -->
+        <div class="filter-header-bar">
+            <div class="filter-category-pills">
+                <button type="button" class="filter-pill-btn active" data-tab="all" onclick="setCategoryTab('all', this)">All Properties</button>
+                <button type="button" class="filter-pill-btn" data-tab="sale" onclick="setCategoryTab('sale', this)">For Sale</button>
+                <button type="button" class="filter-pill-btn" data-tab="rent" onclick="setCategoryTab('rent', this)">For Rent</button>
+                <button type="button" class="filter-pill-btn" data-tab="villa" onclick="setCategoryTab('villa', this)">Luxury Villas</button>
+                <button type="button" class="filter-pill-btn" data-tab="apartment" onclick="setCategoryTab('apartment', this)">Sky Apartments</button>
+            </div>
+            
+            <div class="filter-count-badge">
+                Showing <span id="propertyCountBadge">8 Listings</span>
+            </div>
+        </div>
+
+        <!-- Controls Row: Search, Type, Beds, Budget Slider & Actions -->
+        <form class="filter-grid-controls" id="filterForm" onsubmit="event.preventDefault(); applyPropertyFilters();">
+            <!-- Search Keyword/Location -->
+            <div class="filter-control-group">
+                <label>Search Location / Name</label>
+                <input type="text" id="searchInput" placeholder="e.g. Mumbai, Whitefield, Sea Face, Villa..." oninput="applyPropertyFilters()">
+            </div>
+
+            <!-- Property Type -->
+            <div class="filter-control-group">
+                <label>Property Type</label>
+                <select id="typeSelect" onchange="applyPropertyFilters()">
+                    <option value="all">All Types</option>
+                    <option value="villa">Luxury Villa</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="penthouse">Penthouse</option>
+                </select>
+            </div>
+
+            <!-- Bedrooms -->
+            <div class="filter-control-group">
+                <label>Bedrooms</label>
+                <select id="bedsSelect" onchange="applyPropertyFilters()">
+                    <option value="all">Any BHK</option>
+                    <option value="3">3 BHK</option>
+                    <option value="4">4 BHK</option>
+                    <option value="5">5+ BHK</option>
+                </select>
+            </div>
+
+            <!-- Budget Slider -->
+            <div class="filter-control-group">
+                <label>Max Budget</label>
+                <div class="budget-slider-wrap">
+                    <input type="range" id="budgetRange" min="1" max="15" step="0.5" value="15" oninput="updateBudgetLabel(this.value); applyPropertyFilters();">
+                    <span class="budget-val-chip" id="budgetVal">₹15 Cr</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons: Filter & Reset -->
+            <div class="filter-btn-group">
+                <button type="button" class="btn-filter-apply" onclick="applyPropertyFilters()">Filter</button>
+                <button type="button" class="btn-filter-reset" onclick="resetFilters()">Reset</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!-- ===== FULL WIDTH GRID ===== -->
+<section class="full-width-grid" style="padding: 10px 0 80px;">
+    <div class="container large">
+        
+        <div class="grid-header">
+            <div>
+                <h2 id="listingsHeaderTitle" style="margin: 0 0 6px 0;">Handpicked Luxury Residences</h2>
+                <p style="font-family: 'Outfit', sans-serif; font-size: 0.88rem; color: #66627a; margin: 0;">Verified prime residences with all-inclusive amenities & private site inspection</p>
+            </div>
+            <div class="filter-item" style="display:flex; align-items:center; gap:10px;">
+                <label style="font-family:'Outfit', sans-serif; font-size:0.75rem; font-weight:700; text-transform:uppercase; color:#070714;">Sort By:</label>
+                <select id="sortSelect" onchange="sortProperties(this.value)" style="padding:10px 18px; border-radius:999px; border:1px solid #dcd7ce; background:#ffffff; font-size:0.85rem; font-weight:600; cursor:pointer;">
+                    <option value="featured">Featured Collection</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                    <option value="beds-desc">Bedrooms: Most BHK</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Dynamic Property Grid -->
+        <div class="properties-grid" id="propertiesContainer">
+            <!-- Property cards will be rendered dynamically by JavaScript for interactive galleries & filtering -->
+        </div>
+
+        <div id="noResultsMessage" style="display:none; text-align:center; padding: 60px 20px; background:#ffffff; border-radius:20px; border:1px solid #eee; margin-top:20px;">
+            <div style="font-size:3rem; margin-bottom:12px;">🔍</div>
+            <h3 style="font-size:1.6rem; color:#070714; margin-bottom:8px;">No properties matched your criteria</h3>
+            <p style="color:#504c63; max-width:450px; margin:0 auto 20px;">Try adjusting your filters or search keywords, or reset to view all available listings.</p>
+            <button class="btn btn-primary" onclick="resetFilters()">Reset All Filters</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== COMPREHENSIVE PROPERTY DETAILS & PACKAGE MODAL ===== -->
+<div class="property-modal-overlay" id="propModal" onclick="handleModalOverlayClick(event)">
+    <div class="property-modal-card">
+        <button class="modal-close-btn" onclick="closePropertyModal()">✕</button>
+        
+        <div class="modal-layout">
+            <!-- Left Side: Interactive 5-Photo Gallery -->
+            <div class="modal-gallery-pane">
+                <div class="modal-main-img-box">
+                    <img id="modalMainImg" src="" alt="Property View" class="modal-main-img">
+                    <span class="modal-img-caption" id="modalImgCaption">View 1 of 5</span>
+                </div>
+                
+                <div class="modal-thumbs-row" id="modalThumbsRow">
+                    <!-- Dynamic Thumbnails inserted by JS -->
+                </div>
+
+                <div style="margin-top:24px; padding:16px; background:rgba(255,255,255,0.06); border-radius:12px; border:1px solid rgba(255,255,255,0.1);">
+                    <div style="color:#ffd866; font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">Elite Concierge Assurance</div>
+                    <p style="color:rgba(255,255,255,0.8); font-size:0.82rem; margin:0; line-height:1.5;">Every listing is 100% verified by senior legal advisors. Complete title deeds, RERA verification, and package warranties guaranteed.</p>
+                </div>
+            </div>
+
+            <!-- Right Side: Comprehensive Info & Package Details -->
+            <div class="modal-content-pane">
+                <div class="modal-badge-row">
+                    <span class="card-badge" id="modalCategoryBadge" style="position:static;">For Sale</span>
+                    <span id="modalPropertyTypeBadge" style="font-size:0.75rem; font-weight:700; text-transform:uppercase; background:#f0eff8; color:#0a0a1a; padding:4px 12px; border-radius:999px;">Luxury Villa</span>
+                </div>
+
+                <h2 class="modal-prop-title" id="modalPropTitle">Property Title</h2>
+                <div class="modal-prop-location" id="modalPropLocation">📍 Location</div>
+
+                <div class="modal-price-box">
+                    <div class="modal-price-val" id="modalPriceVal">₹4.85 Cr</div>
+                    <div class="modal-emi-val" id="modalEmiVal">EMI ₹3.4L/mo</div>
+                </div>
+
+                <!-- Package Details Box -->
+                <div class="modal-package-container">
+                    <div class="modal-package-title">
+                        <span id="modalPackageTitle">💎 Platinum Signature Package</span>
+                    </div>
+                    <div class="modal-package-grid" id="modalPackageGrid">
+                        <!-- Package inclusions inserted dynamically -->
+                    </div>
+                </div>
+
+                <!-- Specifications Table -->
+                <div class="modal-specs-table">
+                    <div class="modal-spec-cell">
+                        <div class="modal-spec-label">Bedrooms</div>
+                        <div class="modal-spec-value" id="modalSpecBeds">4 BHK</div>
+                    </div>
+                    <div class="modal-spec-cell">
+                        <div class="modal-spec-label">Bathrooms</div>
+                        <div class="modal-spec-value" id="modalSpecBaths">4 Bath</div>
+                    </div>
+                    <div class="modal-spec-cell">
+                        <div class="modal-spec-label">Carpet Area</div>
+                        <div class="modal-spec-value" id="modalSpecArea">3,450 sq.ft</div>
+                    </div>
+                    <div class="modal-spec-cell">
+                        <div class="modal-spec-label">Floor / Facing</div>
+                        <div class="modal-spec-value" id="modalSpecFacing">Sea Facing</div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <p class="modal-desc-text" id="modalDescText">
+                    Detailed description of the property...
+                </p>
+
+                <!-- Action CTAs -->
+                <div class="modal-cta-row">
+                    <button class="btn-modal-tour" id="modalBookTourBtn" onclick="bookTourForCurrentModal()">Schedule Private Tour</button>
+                    <button class="btn-modal-brochure" onclick="downloadBrochureToast()">Download Brochure (PDF)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Notification -->
+<div id="toastBox" style="position:fixed; bottom:30px; right:30px; background:#0a0a1a; color:#ffffff; padding:16px 26px; border-radius:14px; border:1px solid #e8a820; box-shadow:0 12px 40px rgba(0,0,0,0.4); display:none; z-index:10000; font-weight:600; font-size:0.92rem; align-items:center; gap:10px;">
+    <span>✨</span> <span id="toastMsg">Brochure downloaded successfully!</span>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo-text">Elite<span>Estates</span></div>
+                <p>Curating exceptional living experiences since 2009. We represent the finest properties across India's most prestigious addresses.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="booking.html">Book a Tour</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect With Us</h4>
+                <p style="color:rgba(255,255,255,0.7); font-size:0.9rem; line-height:1.7;">
+                    Call Advisors: +91 98765 43210<br>
+                    Email: concierge@eliteestates.com<br>
+                    Mon – Sun: 9:00 AM – 8:00 PM IST
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 EliteEstates. All Rights Reserved. RERA Registered Luxury Brokerage.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== INTERACTIVE PROPERTIES & GALLERY ENGINE ===== -->
+<script src="app.js" defer></script>
+<script>
+    // Detailed Property Data Model with Packages & Multi-Images
+    const propertiesData = [
+        {
+            id: 1,
+            title: "Auris Serenity Signature",
+            location: "Malad West, Link Road, Mumbai",
+            category: "apartment",
+            statusType: "sale",
+            badgeText: "For Sale",
+            badgeClass: "badge-sale",
+            priceDisplay: "₹4.85 Cr",
+            priceNumeric: 4.85,
+            emiText: "EMI ₹3.4L/mo",
+            beds: 4,
+            baths: 4,
+            area: "3,450 sq.ft",
+            floor: "42nd of 54 Floors",
+            facing: "West (Arabian Sea Facing)",
+            packageTitle: "💎 Platinum Signature Interior & Wellness Package",
+            packageHighlights: [
+                "Italian Statuario Marble throughout & Boffi Designer Kitchen with Siemens Appliances",
+                "3 Reserved Covered Automated Pod Parking Slots with 22kW EV Fast Charger",
+                "3 Years Complimentary Society Maintenance & 24/7 White-Glove Concierge",
+                "Bang & Olufsen Integrated Smart Acoustics + Lutron Automated Curtains & Climate"
+            ],
+            description: "Perched on the 42nd floor, this architectural sky mansion provides unobstructed panoramic views of the Arabian Sea. Designed for discerning buyers, the residence blends imported Italian stonework with advanced home automation and access to a 7-star private residents clubhouse.",
+            images: [
+                { url: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80", caption: "1. Tower Facade & Architecture" },
+                { url: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80", caption: "2. Grand Italian Living Room" },
+                { url: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80", caption: "3. Master Suite with Sea View" },
+                { url: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80", caption: "4. Designer Modular Kitchen" },
+                { url: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80", caption: "5. Double-Height Sunset Balcony" }
+            ]
+        },
+        {
+            id: 2,
+            title: "The Belvedere Private Estate Villas",
+            location: "Whitefield, IT Corridor, Bengaluru",
+            category: "villa",
+            statusType: "rent",
+            badgeText: "For Rent",
+            badgeClass: "badge-rent",
+            priceDisplay: "₹1,85,000 / mo",
+            priceNumeric: 1.85,
+            emiText: "Zero Brokerage",
+            beds: 5,
+            baths: 5,
+            area: "5,600 sq.ft",
+            floor: "Independent G+2 Villa",
+            facing: "East (Vastu Compliant)",
+            packageTitle: "👑 Royal Estate Living & Butler Package",
+            packageHighlights: [
+                "Fully Furnished by Restoration Hardware & bespoke handcrafted teakwood cabinetry",
+                "Private Temperature-Controlled Swimming Pool & 1,500 sq.ft Zen Landscaped Garden",
+                "Dedicated Villa Butler, Housekeeping & Professional Landscaping included",
+                "10kW Solar Rooftop Power Grid (Zero Power Bills) & 100% DG Backup"
+            ],
+            description: "An enclave of pure serenity nestled within Bengaluru's premier gated community. Enjoy complete privacy with private manicured lawns, infinity swimming pool, personal wine vault, and high-speed EV charging stations.",
+            images: [
+                { url: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80", caption: "1. Villa Exterior & Private Lawn" },
+                { url: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80", caption: "2. Temperature-Controlled Pool" },
+                { url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80", caption: "3. Double-Height Great Room" },
+                { url: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80", caption: "4. Garden-Facing Master Bedroom" },
+                { url: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80", caption: "5. Outdoor Dining & BBQ Terrace" }
+            ]
+        },
+        {
+            id: 3,
+            title: "Trump Tower Sky Penthouse",
+            location: "Worli Sea Face, Mumbai",
+            category: "penthouse",
+            statusType: "sale",
+            badgeText: "New Launch",
+            badgeClass: "badge-new",
+            priceDisplay: "₹12.5 Cr",
+            priceNumeric: 12.5,
+            emiText: "Top 68th Floor",
+            beds: 5,
+            baths: 6,
+            area: "6,800 sq.ft",
+            floor: "68th (Top Sky Mansion)",
+            facing: "360° Arabian Sea & Skyline",
+            packageTitle: "🏙️ Trump Presidential Sky Suite Package",
+            packageHighlights: [
+                "Private Glass-Enclosed Rooftop Infinity Plunge Pool overlooking the sea",
+                "Dedicated High-Speed Private Elevator opening straight into your private foyer",
+                "Bespoke Armani/Casa Furnishings & Boffi Italian Designer Kitchen with Sub-Zero units",
+                "5 Reserved Basement Parking Bays + 5 Years Zero Maintenance Charges"
+            ],
+            description: "The pinnacle of South Mumbai luxury. This duplex sky penthouse features 24-foot double-height ceilings, a private glass pool on the sky deck, and white-glove Trump global concierge services at your beck and call.",
+            images: [
+                { url: "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=1200&q=80", caption: "1. Skyline Tower Exterior" },
+                { url: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80", caption: "2. Grand 24-Ft Ceiling Living Hall" },
+                { url: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80", caption: "3. Sky Deck & Private Plunge Pool" },
+                { url: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80", caption: "4. Presidential Master Bedroom" },
+                { url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80", caption: "5. Italian Marble Spa Bathroom" }
+            ]
+        },
+        {
+            id: 4,
+            title: "Oceanic Views Seafront Apartment",
+            location: "Marine Drive, South Mumbai",
+            category: "apartment",
+            statusType: "sale",
+            badgeText: "For Sale",
+            badgeClass: "badge-sale",
+            priceDisplay: "₹3.2 Cr",
+            priceNumeric: 3.2,
+            emiText: "Queen's Necklace View",
+            beds: 3,
+            baths: 3,
+            area: "2,450 sq.ft",
+            floor: "14th of 20 Floors",
+            facing: "West (Direct Sea View)",
+            packageTitle: "🌊 Heritage Marine Luxury Package",
+            packageHighlights: [
+                "Full Arabian Sea Bay Windows with unobstructed Sunset & Sea views",
+                "Natural Teakwood Hardwood Flooring + Daikin Smart Central HVAC",
+                "2 Covered Hydraulic Mechanical Car Parking Bays included",
+                "Control4 iPad Home Automation Suite & 2-Yr Pre-paid Maintenance"
+            ],
+            description: "Located on prestigious Marine Drive, this Art Deco inspired waterfront sanctuary provides front-row views of the iconic Queen's Necklace. Step into luxury with high ceilings, designer fixtures, and sea breeze in every room.",
+            images: [
+                { url: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80", caption: "1. Arabian Sea Living Room" },
+                { url: "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=1200&q=80", caption: "2. Sunset Viewing Balcony" },
+                { url: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80", caption: "3. Coastal Master Suite" },
+                { url: "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=1200&q=80", caption: "4. Contemporary Dining Room" },
+                { url: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80", caption: "5. Italian Marble Kitchen" }
+            ]
+        },
+        {
+            id: 5,
+            title: "Orchid Enclave Hillside Villa",
+            location: "Road No. 36, Jubilee Hills, Hyderabad",
+            category: "villa",
+            statusType: "rent",
+            badgeText: "For Rent",
+            badgeClass: "badge-rent",
+            priceDisplay: "₹1,15,000 / mo",
+            priceNumeric: 1.15,
+            emiText: "Gated Enclave",
+            beds: 4,
+            baths: 4,
+            area: "4,800 sq.ft",
+            floor: "Independent G+1 Villa",
+            facing: "North-East (Vastu)",
+            packageTitle: "✨ Jubilee Executive Lifestyle Package",
+            packageHighlights: [
+                "Semi-Furnished with custom Italian walk-in wardrobes & modular kitchen",
+                "Private Landscaped Courtyard with fountain and illuminated outdoor gazebo",
+                "3 Covered Motorized Car Garages & 24/7 3-Tier Security with Biometric Access",
+                "Full Garden Landscaping and Community Maintenance included"
+            ],
+            description: "Experience refined elegance in the heart of Hyderabad's most exclusive VIP address. Boasting marble flooring, double-height foyer, private theatre space, and lush courtyards for tranquil entertaining.",
+            images: [
+                { url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80", caption: "1. Modern Villa Facade" },
+                { url: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80", caption: "2. Sprawling Family Lounge" },
+                { url: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80", caption: "3. Landscaped Lawn & Gazebo" },
+                { url: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80", caption: "4. Deluxe Master Bedroom" },
+                { url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80", caption: "5. Designer Spa Bathroom" }
+            ]
+        },
+        {
+            id: 6,
+            title: "Botanica Eco-Villas",
+            location: "Electronic City Phase 1, Bengaluru",
+            category: "villa",
+            statusType: "sale",
+            badgeText: "New Launch",
+            badgeClass: "badge-new",
+            priceDisplay: "₹1.5 Cr",
+            priceNumeric: 1.5,
+            emiText: "Net-Zero Villa",
+            beds: 3,
+            baths: 3,
+            area: "2,900 sq.ft",
+            floor: "Contemporary Eco Villa",
+            facing: "East Facing",
+            packageTitle: "🌿 Green Horizon Zero-Carbon Package",
+            packageHighlights: [
+                "100% Solar-Powered Net-Zero Energy Grid with Battery Storage (Zero electric bills)",
+                "Organic Kitchen Garden plot, biological air filtration & Rainwater harvesting",
+                "Smart Eco-Automation: Smart climate thermostats & 22kW EV car charger",
+                "Zero Brokerage + Free First-Year Solar & Organic Landscape Care"
+            ],
+            description: "Where luxury meets sustainability. Set within a 40-acre wooded forest sanctuary, these Scandinavian-inspired net-zero villas offer natural temperature regulation, organic private gardens, and sustainable living without compromise.",
+            images: [
+                { url: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80", caption: "1. Eco Villa Forest Setting" },
+                { url: "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?auto=format&fit=crop&w=1200&q=80", caption: "2. Sunlit Open-Plan Interior" },
+                { url: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1200&q=80", caption: "3. Green Courtyard & Deck" },
+                { url: "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=1200&q=80", caption: "4. Earth-Toned Master Suite" },
+                { url: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80", caption: "5. Organic Terrace Herb Garden" }
+            ]
+        },
+        {
+            id: 7,
+            title: "Sunset Horizon Beach Mansion",
+            location: "ECR (East Coast Road), Chennai",
+            category: "villa",
+            statusType: "sale",
+            badgeText: "For Sale",
+            badgeClass: "badge-sale",
+            priceDisplay: "₹8.9 Cr",
+            priceNumeric: 8.9,
+            emiText: "Direct Beach Access",
+            beds: 6,
+            baths: 7,
+            area: "7,500 sq.ft",
+            floor: "Private Beachfront Compound",
+            facing: "East (Bay of Bengal)",
+            packageTitle: "🏖️ Royal Coastal Sanctuary Package",
+            packageHighlights: [
+                "Direct Private Beach Access with secure gated pathway & private sand deck",
+                "50-Foot Private Oceanfront Infinity Pool with submerged lighting & jacuzzi",
+                "Fully Furnished by Scandinavian & Italian interior ateliers",
+                "4 Garages + Separate Attendant Staff Quarters + 3-Yr Full Maintenance"
+            ],
+            description: "A breathtaking coastal estate directly fronting the Bay of Bengal. Wake up to golden sunrises, dine alfresco on your private teak terrace, and enjoy the ultimate in beachfront privacy along Chennai's scenic golden coast.",
+            images: [
+                { url: "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=1200&q=80", caption: "1. Oceanfront Villa Compound" },
+                { url: "https://images.unsplash.com/photo-1571888166854-0720443fb721?auto=format&fit=crop&w=1200&q=80", caption: "2. Sunset Pool Deck & Lounge" },
+                { url: "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1200&q=80", caption: "3. Grand Double-Height Living" },
+                { url: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80", caption: "4. Ocean-Facing Master Suite" },
+                { url: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80", caption: "5. Private Beachside Pavilion" }
+            ]
+        },
+        {
+            id: 8,
+            title: "Valley View Mountain Retreat",
+            location: "Tiger Point Road, Lonavala, Pune",
+            category: "villa",
+            statusType: "rent",
+            badgeText: "For Rent",
+            badgeClass: "badge-rent",
+            priceDisplay: "₹2,50,000 / mo",
+            priceNumeric: 2.5,
+            emiText: "Hilltop Estate",
+            beds: 5,
+            baths: 5,
+            area: "5,400 sq.ft",
+            floor: "Cliffside Luxury Villa",
+            facing: "Panoramic Valley View",
+            packageTitle: "🌲 Alpine Wellness & Mountain Retreat Package",
+            packageHighlights: [
+                "270° Panoramic Valley & Waterfall Cliff Views from cantilevered glass deck",
+                "Heated Infinity Pool overlooking Western Ghats mountain ridges",
+                "Wood-burning stone fireplace + Handcrafted Teak & Pine wood interiors",
+                "On-site full-time caretaker, chef on call & high-speed Starlink WiFi included"
+            ],
+            description: "Perched atop the misty hills of Lonavala, this retreat is an alpine haven for those seeking high-altitude tranquility. Features a heated glass-edge pool, stone fireplace lounge, private BBQ deck, and star-gazing terrace.",
+            images: [
+                { url: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80", caption: "1. Cliffside Villa & Valley" },
+                { url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80", caption: "2. Panoramic Mountain Deck" },
+                { url: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80", caption: "3. Fireplace Living Lounge" },
+                { url: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80", caption: "4. Master Suite with Mist Views" },
+                { url: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80", caption: "5. Stone Spa Bathroom & Tub" }
+            ]
+        }
+    ];
+
+    // Card slider image tracking map: { propertyId: currentImageIndex }
+    const cardImageIndexMap = {};
+    let activeCategoryTab = 'all';
+    let currentModalProperty = null;
+    let currentModalImageIndex = 0;
+
+    // Render Properties to Grid
+    function renderProperties(list) {
+        const container = document.getElementById('propertiesContainer');
+        const noResults = document.getElementById('noResultsMessage');
+        const badge = document.getElementById('propertyCountBadge');
+
+        container.innerHTML = '';
+        badge.innerText = `${list.length} Listings`;
+
+        if (list.length === 0) {
+            noResults.style.display = 'block';
+            return;
+        }
+        noResults.style.display = 'none';
+
+        list.forEach(item => {
+            if (cardImageIndexMap[item.id] === undefined) {
+                cardImageIndexMap[item.id] = 0;
+            }
+            const currentIdx = cardImageIndexMap[item.id];
+            const currentImg = item.images[currentIdx];
+
+            const card = document.createElement('article');
+            card.className = 'property-card reveal revealed';
+            card.id = `prop-card-${item.id}`;
+
+            card.innerHTML = `
+                <div class="card-image-wrap" onclick="openPropertyModal(${item.id})">
+                    <img src="${currentImg.url}" alt="${item.title}" class="card-img-slide" id="card-img-${item.id}">
+                    <span class="card-badge ${item.badgeClass}">${item.badgeText}</span>
+                    <button class="card-wishlist" onclick="toggleWishlist(event, this)">♡</button>
+                    
+                    <!-- Prev / Next Navigation Arrows -->
+                    <button class="card-nav-btn prev" onclick="navigateCardImage(event, ${item.id}, -1)">‹</button>
+                    <button class="card-nav-btn next" onclick="navigateCardImage(event, ${item.id}, 1)">›</button>
+                    
+                    <span class="photo-count-badge" id="card-badge-count-${item.id}">📷 ${currentIdx + 1} / ${item.images.length}</span>
+
+                    <!-- Indicator Dots -->
+                    <div class="card-dots" id="card-dots-${item.id}">
+                        ${item.images.map((_, i) => `<span class="card-dot ${i === currentIdx ? 'active' : ''}"></span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="card-price-row">
+                        <div class="card-price">${item.priceDisplay}</div>
+                        <span class="card-emi-tag">${item.emiText}</span>
+                    </div>
+
+                    <h3 class="card-title" onclick="openPropertyModal(${item.id})" style="cursor:pointer;">${item.title}</h3>
+                    <p class="card-location">📍 ${item.location}</p>
+
+                    <div class="card-specs-strip">
+                        <span class="card-spec-item"><span class="spec-icon">🛏</span>${item.beds} BHK</span>
+                        <span class="card-spec-item"><span class="spec-icon">🚿</span>${item.baths} Bath</span>
+                        <span class="card-spec-item"><span class="spec-icon">📐</span>${item.area}</span>
+                    </div>
+
+                    <!-- Package Details Highlight Box -->
+                    <div class="card-package-box">
+                        <div class="package-header">
+                            <span class="package-name">${item.packageTitle.split(' ')[0]} ${item.packageTitle.split(' ').slice(1, 3).join(' ')}</span>
+                            <span class="package-badge-tag">Verified</span>
+                        </div>
+                        <ul class="package-highlights-list">
+                            <li>${item.packageHighlights[0]}</li>
+                            <li>${item.packageHighlights[1]}</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-bottom-actions">
+                        <button class="btn-card-details" onclick="openPropertyModal(${item.id})">View Details</button>
+                        <button class="btn-card-brochure" title="Download Property Brochure (PDF)" onclick="downloadBrochureToast(${item.id})">PDF</button>
+                        <button class="btn-card-tour" onclick="bookTourFor(${item.id})">Book Tour</button>
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(card);
+        });
+    }
+
+    // Navigate Card Images (Prev / Next) directly on the card
+    function navigateCardImage(e, propId, direction) {
+        e.stopPropagation();
+        const prop = propertiesData.find(p => p.id === propId);
+        if (!prop) return;
+
+        let idx = (cardImageIndexMap[propId] || 0) + direction;
+        if (idx < 0) idx = prop.images.length - 1;
+        if (idx >= prop.images.length) idx = 0;
+        cardImageIndexMap[propId] = idx;
+
+        const imgEl = document.getElementById(`card-img-${propId}`);
+        const countEl = document.getElementById(`card-badge-count-${propId}`);
+        const dotsEl = document.getElementById(`card-dots-${propId}`);
+
+        if (imgEl) imgEl.src = prop.images[idx].url;
+        if (countEl) countEl.innerText = `📷 ${idx + 1} / ${prop.images.length}`;
+        if (dotsEl) {
+            dotsEl.innerHTML = prop.images.map((_, i) => `<span class="card-dot ${i === idx ? 'active' : ''}"></span>`).join('');
+        }
+    }
+
+    // Toggle Wishlist Heart
+    function toggleWishlist(e, btn) {
+        e.stopPropagation();
+        const isActive = btn.style.background === 'rgb(231, 76, 60)' || btn.textContent === '♥';
+        btn.style.background = isActive ? 'rgba(255,255,255,0.9)' : '#e74c3c';
+        btn.style.color = isActive ? '' : '#ffffff';
+        btn.textContent = isActive ? '♡' : '♥';
+    }
+
+    // Budget Slider Label Update
+    function updateBudgetLabel(val) {
+        document.getElementById('budgetVal').innerText = `₹${val} Cr`;
+    }
+
+    // Category Tabs Switcher (All / Sale / Rent / Villa / Apartment)
+    function setCategoryTab(tab, btn) {
+        activeCategoryTab = tab;
+        document.querySelectorAll('.filter-pill-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyPropertyFilters();
+    }
+
+    // Apply Real-Time Filters
+    function applyPropertyFilters() {
+        const query = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+        const selectedType = document.getElementById('typeSelect').value;
+        const selectedBeds = document.getElementById('bedsSelect').value;
+        const maxBudget = parseFloat(document.getElementById('budgetRange').value);
+
+        let filtered = propertiesData.filter(prop => {
+            // Category Tab Check
+            if (activeCategoryTab === 'sale' && prop.statusType !== 'sale') return false;
+            if (activeCategoryTab === 'rent' && prop.statusType !== 'rent') return false;
+            if (activeCategoryTab === 'villa' && prop.category !== 'villa') return false;
+            if (activeCategoryTab === 'apartment' && prop.category !== 'apartment' && prop.category !== 'penthouse') return false;
+
+            // Search Keyword Check
+            if (query) {
+                const combined = `${prop.title} ${prop.location} ${prop.category} ${prop.packageTitle} ${prop.description}`.toLowerCase();
+                if (!combined.includes(query)) return false;
+            }
+
+            // Type Dropdown Check
+            if (selectedType !== 'all' && prop.category !== selectedType) return false;
+
+            // Bedrooms Check
+            if (selectedBeds !== 'all') {
+                const bedsNum = parseInt(selectedBeds);
+                if (bedsNum === 5 && prop.beds < 5) return false;
+                if (bedsNum !== 5 && prop.beds !== bedsNum) return false;
+            }
+
+            // Budget Slider Check (only filter sale properties by Cr, or keep all under limit)
+            if (prop.statusType === 'sale' && prop.priceNumeric > maxBudget) return false;
+
+            return true;
+        });
+
+        renderProperties(filtered);
+    }
+
+    // Reset Filters
+    function resetFilters() {
+        document.getElementById('searchInput').value = '';
+        document.getElementById('typeSelect').value = 'all';
+        document.getElementById('bedsSelect').value = 'all';
+        document.getElementById('budgetRange').value = '15';
+        document.getElementById('budgetVal').innerText = '₹15 Cr';
+        activeCategoryTab = 'all';
+        document.querySelectorAll('.filter-pill-btn').forEach(b => {
+            b.classList.toggle('active', b.getAttribute('data-tab') === 'all');
+        });
+        sortProperties(document.getElementById('sortSelect').value);
+    }
+
+    // Sort Properties
+    function sortProperties(sortValue) {
+        let sorted = getFilteredProperties();
+        if (sortValue === 'price-asc') {
+            sorted.sort((a, b) => a.priceNumeric - b.priceNumeric);
+        } else if (sortValue === 'price-desc') {
+            sorted.sort((a, b) => b.priceNumeric - a.priceNumeric);
+        } else if (sortValue === 'beds-desc') {
+            sorted.sort((a, b) => b.beds - a.beds);
+        }
+        renderProperties(sorted);
+    }
+
+    function getFilteredProperties() {
+        const query = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+        const selectedType = document.getElementById('typeSelect').value;
+        const selectedBeds = document.getElementById('bedsSelect').value;
+        const maxBudget = parseFloat(document.getElementById('budgetRange').value);
+        return propertiesData.filter(prop => {
+            if (activeCategoryTab === 'sale' && prop.statusType !== 'sale') return false;
+            if (activeCategoryTab === 'rent' && prop.statusType !== 'rent') return false;
+            if (activeCategoryTab === 'villa' && prop.category !== 'villa') return false;
+            if (activeCategoryTab === 'apartment' && prop.category !== 'apartment' && prop.category !== 'penthouse') return false;
+            if (query && !`${prop.title} ${prop.location} ${prop.category} ${prop.packageTitle} ${prop.description}`.toLowerCase().includes(query)) return false;
+            if (selectedType !== 'all' && prop.category !== selectedType) return false;
+            if (selectedBeds !== 'all') { const beds = parseInt(selectedBeds); if (beds === 5 ? prop.beds < 5 : prop.beds !== beds) return false; }
+            if (prop.statusType === 'sale' && prop.priceNumeric > maxBudget) return false;
+            return true;
+        });
+    }
+
+    // Modal Operations
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && document.getElementById('propModal').classList.contains('open')) closePropertyModal();
+    });
+
+    function openPropertyModal(propId) {
+        const prop = propertiesData.find(p => p.id === propId);
+        if (!prop) return;
+
+        currentModalProperty = prop;
+        currentModalImageIndex = 0;
+
+        document.getElementById('modalPropTitle').innerText = prop.title;
+        document.getElementById('modalPropLocation').innerText = `📍 ${prop.location}`;
+        document.getElementById('modalPriceVal').innerText = prop.priceDisplay;
+        document.getElementById('modalEmiVal').innerText = prop.emiText;
+        document.getElementById('modalCategoryBadge').innerText = prop.badgeText;
+        document.getElementById('modalCategoryBadge').className = `card-badge ${prop.badgeClass}`;
+        document.getElementById('modalPropertyTypeBadge').innerText = prop.category.toUpperCase();
+        document.getElementById('modalDescText').innerText = prop.description;
+
+        document.getElementById('modalSpecBeds').innerText = `${prop.beds} BHK`;
+        document.getElementById('modalSpecBaths').innerText = `${prop.baths} Bath`;
+        document.getElementById('modalSpecArea').innerText = prop.area;
+        document.getElementById('modalSpecFacing').innerText = prop.facing;
+
+        document.getElementById('modalPackageTitle').innerText = prop.packageTitle;
+        const packageGrid = document.getElementById('modalPackageGrid');
+        packageGrid.innerHTML = prop.packageHighlights.map(item => `
+            <div class="modal-package-item">
+                <span class="icon">✨</span>
+                <span>${item}</span>
+            </div>
+        `).join('');
+
+        // Setup Main Image and Thumbnails
+        setModalImage(0);
+
+        const thumbsRow = document.getElementById('modalThumbsRow');
+        thumbsRow.innerHTML = prop.images.map((img, i) => `
+            <div class="modal-thumb ${i === 0 ? 'active' : ''}" onclick="setModalImage(${i})">
+                <img src="${img.url}" alt="${img.caption}">
+            </div>
+        `).join('');
+
+        document.getElementById('propModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function setModalImage(index) {
+        if (!currentModalProperty) return;
+        currentModalImageIndex = index;
+        const img = currentModalProperty.images[index];
+        const mainImgEl = document.getElementById('modalMainImg');
+        const captionEl = document.getElementById('modalImgCaption');
+
+        mainImgEl.style.opacity = '0.5';
+        setTimeout(() => {
+            mainImgEl.src = img.url;
+            captionEl.innerText = img.caption;
+            mainImgEl.style.opacity = '1';
+        }, 150);
+
+        document.querySelectorAll('.modal-thumb').forEach((thumb, i) => {
+            thumb.classList.toggle('active', i === index);
+        });
+    }
+
+    function closePropertyModal() {
+        document.getElementById('propModal').classList.remove('open');
+        document.body.style.overflow = 'auto';
+        currentModalProperty = null;
+    }
+
+    function handleModalOverlayClick(e) {
+        if (e.target.id === 'propModal') {
+            closePropertyModal();
+        }
+    }
+
+    function bookTourFor(propId) {
+        const prop = propertiesData.find(p => p.id === propId);
+        const name = prop ? encodeURIComponent(prop.title) : '';
+        window.location.href = `/booking.html?property=${name}`;
+    }
+
+    function bookTourForCurrentModal() {
+        if (currentModalProperty) {
+            bookTourFor(currentModalProperty.id);
+        }
+    }
+
+    function downloadBrochureToast(propId) {
+        const prop = propId ? propertiesData.find(p => p.id === propId) : currentModalProperty;
+        const link = document.createElement('a');
+        let filename = 'elite-estates-portfolio.pdf';
+        let displayName = 'Portfolio Collection';
+
+        if (prop && prop.id) {
+            filename = `property-${prop.id}-brochure.pdf`;
+            displayName = prop.title;
+        }
+
+        link.href = `/output/pdf/${filename}`;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        const toast = document.getElementById('toastBox');
+        const msg = document.getElementById('toastMsg');
+        msg.innerText = `${displayName} brochure downloaded.`;
+        toast.style.display = 'flex';
+        setTimeout(() => {
+            toast.style.display = 'none';
+        }, 3500);
+    }
+
+    // Mobile Nav
+    function toggleNav() {
+        document.getElementById('navMenu').classList.toggle('open');
+        document.getElementById('hamburger').classList.toggle('active');
+    }
+
+    // Scroll Navbar Effect
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('mainNav');
+        if (window.scrollY > 50) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+    });
+
+    // Initialize Page
+    document.addEventListener('DOMContentLoaded', () => {
+        sortProperties(document.getElementById('sortSelect').value);
+
+        // Scroll Reveal Animation via Intersection Observer
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        if (revealElements.length > 0) {
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+            revealElements.forEach(el => revealObserver.observe(el));
+        }
+    });
+</script>
+</body>
+</html>

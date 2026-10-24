@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+data/*.sqlite
+data/*.sqlite-shm
+data/*.sqlite-wal
+data/submissions.json
+data/*.log
+
+# Temporary image and document generation artifacts
+tmp/
+
+# Installed dependencies
+node_modules/
