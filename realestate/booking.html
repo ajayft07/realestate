@@ -1,0 +1,2252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book an exclusive private property tour with Elite Estates advisors. Schedule your viewing today.">
+    <title>Book a Private Tour — Elite Estates</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        * { box-sizing: border-box; }
+
+        body { background: #08071a; font-family: 'Inter', sans-serif; }
+
+        /* =========== HERO BOOKING BANNER =========== */
+        .booking-hero {
+            position: relative;
+            background: linear-gradient(135deg, #060614 0%, #0a0a22 45%, #13103a 80%, #0d091f 100%);
+            padding: 140px 0 0;
+            overflow: hidden;
+            min-height: 340px;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .booking-hero-orbs {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bh-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+        }
+
+        .bh-orb-1 {
+            width: 600px; height: 400px;
+            background: radial-gradient(circle, rgba(108,77,232,0.25), transparent 70%);
+            top: -100px; right: -80px;
+        }
+
+        .bh-orb-2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(240,192,64,0.12), transparent 70%);
+            bottom: -80px; left: -60px;
+        }
+
+        .bh-orb-3 {
+            width: 350px; height: 280px;
+            background: radial-gradient(circle, rgba(32,96,232,0.15), transparent 70%);
+            top: 40px; left: 35%;
+        }
+
+        .booking-hero-grid {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: end;
+            gap: 40px;
+            padding-bottom: 0;
+            width: 100%;
+        }
+
+        .booking-hero-left {
+            padding-bottom: 60px;
+        }
+
+        .booking-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(240,192,64,0.1);
+            border: 1px solid rgba(240,192,64,0.3);
+            border-radius: 999px;
+            padding: 7px 18px;
+            color: #f0c040;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .booking-hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.8rem, 5vw, 4.4rem);
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 18px;
+        }
+
+        .booking-hero-title span {
+            color: #f0c040;
+            font-style: italic;
+        }
+
+        .booking-hero-desc {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.72);
+            line-height: 1.7;
+            max-width: 480px;
+        }
+
+        .booking-hero-right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+        /* Advisor preview cards floating on the right */
+        .advisor-hero-panel {
+            display: flex;
+            gap: 16px;
+            align-items: flex-end;
+            padding-bottom: 40px;
+        }
+
+        .adv-hero-card {
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            padding: 20px;
+            width: 160px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .adv-hero-card:nth-child(2) {
+            margin-bottom: 30px;
+        }
+
+        .adv-hero-card:hover {
+            border-color: rgba(240,192,64,0.4);
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-6px);
+        }
+
+        .adv-hero-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 10px;
+            border: 2px solid rgba(240,192,64,0.4);
+            display: block;
+            background: linear-gradient(135deg, #2a2060, #4a3888);
+            overflow: hidden;
+        }
+
+        .adv-hero-avatar-inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .adv-hero-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .adv-hero-role {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.55);
+            font-weight: 400;
+        }
+
+        .adv-hero-rating {
+            margin-top: 8px;
+            color: #f0c040;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        /* =========== MAIN BOOKING SECTION =========== */
+        .booking-main {
+            background: #faf8f4;
+            padding: 0;
+        }
+
+        .booking-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 0;
+            min-height: 100vh;
+        }
+
+        /* =========== LEFT: STEPPER FORM =========== */
+        .booking-form-pane {
+            background: #ffffff;
+            padding: 56px 60px;
+            border-right: 1px solid rgba(0,0,0,0.06);
+        }
+
+        /* Step Progress Bar */
+        .step-progress {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 50px;
+        }
+
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex: 1;
+        }
+
+        .step-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: #e8e5f0;
+            z-index: 0;
+            transition: background 0.4s ease;
+        }
+
+        .step-item.completed:not(:last-child)::after {
+            background: linear-gradient(90deg, #e8a820, #f0c040);
+        }
+
+        .step-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #f0eff8;
+            border: 2px solid #e0ddee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #7a76a0;
+            position: relative;
+            z-index: 1;
+            transition: all 0.35s ease;
+        }
+
+        .step-item.active .step-circle {
+            background: linear-gradient(135deg, #e8a820, #f0c040);
+            border-color: #f0c040;
+            color: #07070e;
+            box-shadow: 0 0 0 5px rgba(240,192,64,0.2);
+        }
+
+        .step-item.completed .step-circle {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            border-color: #27ae60;
+            color: #ffffff;
+        }
+
+        .step-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #9e9aba;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .step-item.active .step-label { color: #b57a00; }
+        .step-item.completed .step-label { color: #27ae60; }
+
+        /* Step Panels */
+        .step-panel {
+            display: none;
+        }
+
+        .step-panel.active {
+            display: block;
+            animation: stepSlideIn 0.4s ease both;
+        }
+
+        @keyframes stepSlideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .step-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #070614;
+            margin-bottom: 6px;
+        }
+
+        .step-subtitle {
+            font-size: 0.95rem;
+            color: #504c63;
+            font-weight: 500;
+            margin-bottom: 36px;
+            line-height: 1.5;
+        }
+
+        /* Form Fields */
+        .bk-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .bk-form-grid .bk-full { grid-column: span 2; }
+
+        .bk-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .bk-field label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #1a1828;
+        }
+
+        .bk-field label .req {
+            color: #e74c3c;
+            margin-left: 2px;
+        }
+
+        .bk-input {
+            padding: 14px 18px;
+            background: #fbfaf8;
+            border: 1.5px solid #e5e2db;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #121020;
+            outline: none;
+            transition: all 0.25s ease;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .bk-input:focus {
+            background: #ffffff;
+            border-color: #e8a820;
+            box-shadow: 0 0 0 3px rgba(240,192,64,0.18);
+        }
+
+        .bk-input.error { border-color: #e74c3c; box-shadow: 0 0 0 3px rgba(231,76,60,0.15); }
+
+        .bk-input::placeholder { color: #a9a6ba; }
+
+        /* Phone field with prefix */
+        .phone-wrap {
+            display: flex;
+            gap: 0;
+        }
+
+        .phone-prefix-tag {
+            background: #f0eff8;
+            border: 1.5px solid #e5e2db;
+            border-right: none;
+            border-radius: 12px 0 0 12px;
+            padding: 14px 14px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: #1a1828;
+            white-space: nowrap;
+        }
+
+        .phone-wrap .bk-input {
+            border-radius: 0 12px 12px 0;
+            border-left: none;
+        }
+
+        .phone-wrap .bk-input:focus {
+            border-left: none;
+        }
+
+        /* Tour Type Toggle */
+        .tour-type-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .tour-type-card {
+            border: 2px solid #e5e2db;
+            border-radius: 14px;
+            padding: 18px 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: center;
+            background: #fbfaf8;
+        }
+
+        .tour-type-card:hover {
+            border-color: rgba(240,192,64,0.5);
+            background: rgba(240,192,64,0.04);
+        }
+
+        .tour-type-card.selected {
+            border-color: #e8a820;
+            background: linear-gradient(135deg, #fffcf5, #fef6e4);
+            box-shadow: 0 4px 14px rgba(240,192,64,0.2);
+        }
+
+        .tour-type-card input[type="radio"] { display: none; }
+
+        .tour-type-icon { font-size: 1.8rem; margin-bottom: 8px; }
+
+        .tour-type-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #1a1828;
+            margin-bottom: 3px;
+        }
+
+        .tour-type-desc {
+            font-size: 0.72rem;
+            color: #706c88;
+            font-weight: 500;
+        }
+
+        /* Calendar-style date picker row */
+        .date-chips-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 6px;
+        }
+
+        .date-chip {
+            padding: 10px 16px;
+            background: #f0eff8;
+            border: 1.5px solid #e0ddee;
+            border-radius: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #3e3b52;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .date-chip:hover {
+            border-color: rgba(240,192,64,0.5);
+            background: rgba(240,192,64,0.06);
+            color: #8c5f00;
+        }
+
+        .date-chip.selected {
+            background: linear-gradient(135deg, #e8a820, #f0c040);
+            border-color: #e8a820;
+            color: #07070e;
+            box-shadow: 0 4px 14px rgba(240,192,64,0.35);
+        }
+
+        .date-chip-day {
+            font-size: 0.68rem;
+            font-weight: 600;
+            opacity: 0.8;
+        }
+
+        .date-chip-num {
+            font-size: 1rem;
+            font-weight: 800;
+        }
+
+        /* Time Slots */
+        .time-slots-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .time-slot-btn {
+            padding: 11px 8px;
+            background: #f0eff8;
+            border: 1.5px solid #e0ddee;
+            border-radius: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #3e3b52;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .time-slot-btn:hover:not(.unavailable) {
+            border-color: rgba(240,192,64,0.5);
+            background: rgba(240,192,64,0.06);
+            color: #8c5f00;
+        }
+
+        .time-slot-btn.selected:not(.unavailable) {
+            background: linear-gradient(135deg, #e8a820, #f0c040);
+            border-color: #e8a820;
+            color: #07070e;
+            box-shadow: 0 4px 14px rgba(240,192,64,0.3);
+        }
+
+        .time-slot-btn.unavailable {
+            opacity: 0.38;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        /* Budget Range */
+        .budget-range-wrap {
+            padding: 20px;
+            background: #fbfaf8;
+            border: 1.5px solid #e5e2db;
+            border-radius: 14px;
+        }
+
+        .budget-range-wrap input[type="range"] {
+            width: 100%;
+            accent-color: #e8a820;
+            cursor: pointer;
+            margin: 8px 0;
+        }
+
+        .budget-labels {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #706c88;
+            margin-top: 4px;
+        }
+
+        .budget-current-val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #070614;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        /* Property Preference Tags */
+        .prop-tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .prop-tag {
+            padding: 8px 16px;
+            background: #f0eff8;
+            border: 1.5px solid #e0ddee;
+            border-radius: 999px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #3e3b52;
+            cursor: pointer;
+            transition: all 0.22s ease;
+        }
+
+        .prop-tag.selected {
+            background: #0a0a1a;
+            color: #f0c040;
+            border-color: #0a0a1a;
+        }
+
+        .prop-tag:hover:not(.selected) {
+            border-color: rgba(240,192,64,0.4);
+            color: #8c5f00;
+        }
+
+        /* Available Property Selector in Step 3 */
+        .prop-selector-wrap {
+            background: #ffffff;
+            border: 1.5px solid #e5e2db;
+            border-radius: 18px;
+            padding: 22px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(10,10,26,0.03);
+        }
+
+        .prop-selector-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .prop-selector-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #070614;
+        }
+
+        .prop-cat-pills {
+            display: inline-flex;
+            gap: 6px;
+            background: #f0eff8;
+            padding: 4px;
+            border-radius: 999px;
+            flex-wrap: wrap;
+        }
+
+        .prop-cat-btn {
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: transparent;
+            border: none;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: #49455e;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .prop-cat-btn.active, .prop-cat-btn:hover {
+            background: #0a0a1a;
+            color: #ffffff;
+        }
+
+        .prop-cat-btn.active {
+            box-shadow: 0 3px 10px rgba(10,10,26,0.2);
+        }
+
+        .booking-prop-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            max-height: 480px;
+            overflow-y: auto;
+            padding: 2px 4px 6px;
+        }
+
+        @media (max-width: 768px) {
+            .booking-prop-list { grid-template-columns: 1fr; }
+        }
+
+        .booking-prop-card {
+            display: flex;
+            gap: 12px;
+            padding: 10px;
+            background: #fbfaf8;
+            border: 2px solid #e5e2db;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .booking-prop-card:hover {
+            border-color: rgba(240,192,64,0.6);
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(10,10,26,0.06);
+        }
+
+        .booking-prop-card.selected {
+            border-color: #e8a820;
+            background: linear-gradient(135deg, #fffcf5 0%, #fef8eb 100%);
+            box-shadow: 0 6px 20px rgba(232,168,32,0.22);
+        }
+
+        .bk-prop-thumb {
+            width: 86px;
+            height: 86px;
+            border-radius: 10px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .bk-prop-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .bk-prop-badge-row {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .bk-prop-badge {
+            font-size: 0.62rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: #0a0a1a;
+            color: #f0c040;
+        }
+
+        .bk-prop-status {
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: #7b7890;
+        }
+
+        .bk-prop-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: #070614;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 2px;
+        }
+
+        .bk-prop-loc {
+            font-size: 0.72rem;
+            color: #535066;
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .bk-prop-specs {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #272535;
+            margin-bottom: 3px;
+        }
+
+        .bk-prop-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #9c6800;
+            line-height: 1;
+        }
+
+        .bk-prop-check {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1.5px solid #d5d1e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: transparent;
+            transition: all 0.2s ease;
+        }
+
+        .booking-prop-card.selected .bk-prop-check {
+            background: linear-gradient(135deg, #e8a820, #f0c040);
+            border-color: #e8a820;
+            color: #07070e;
+        }
+
+        /* Advisor Card Contrast Enhancement inside Form Pane */
+        #advisorSelectGroup .advisor-card {
+            background: #fbfaf8 !important;
+            border: 1.5px solid #e2ded5 !important;
+        }
+
+        #advisorSelectGroup .advisor-card:hover {
+            background: #ffffff !important;
+            border-color: rgba(240,192,64,0.6) !important;
+        }
+
+        #advisorSelectGroup .advisor-card.selected-adv {
+            background: #fffcf5 !important;
+            border-color: #e8a820 !important;
+            box-shadow: 0 4px 16px rgba(240,192,64,0.2) !important;
+        }
+
+        #advisorSelectGroup .advisor-info-name {
+            color: #070614 !important;
+            font-weight: 800 !important;
+        }
+
+        #advisorSelectGroup .advisor-info-spec {
+            color: #534f66 !important;
+            font-weight: 600 !important;
+        }
+
+        #advisorSelectGroup .advisor-info-rating {
+            color: #b57a00 !important;
+        }
+
+        #advisorSelectGroup .advisor-select-check {
+            border-color: #c9c5d8 !important;
+        }
+
+        /* Step Navigation Buttons */
+        .step-nav-row {
+            display: flex;
+            gap: 14px;
+            margin-top: 40px;
+            align-items: center;
+        }
+
+        .btn-step-back {
+            background: #f0eff8;
+            color: #3e3b52;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1.5px solid #e0ddee;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .btn-step-back:hover {
+            background: #e6e3f0;
+            color: #1a1828;
+        }
+
+        .btn-step-next {
+            flex: 1;
+            background: linear-gradient(135deg, #e8a820, #f0c040);
+            color: #07070e;
+            padding: 16px 28px;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 24px rgba(240,192,64,0.35);
+        }
+
+        .btn-step-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(240,192,64,0.5);
+        }
+
+        /* Checkbox */
+        .bk-checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            color: #2b283d;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .bk-checkbox-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #e8a820;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* =========== RIGHT: STICKY SIDEBAR =========== */
+        .booking-sidebar {
+            background: linear-gradient(175deg, #07070e 0%, #0d0d28 60%, #131040 100%);
+            padding: 50px 36px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .sidebar-heading {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-sub {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.5;
+        }
+
+        /* Booking Summary Box */
+        .booking-summary-box {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 18px;
+            padding: 22px;
+        }
+
+        .booking-summary-box h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #f0c040;
+            margin-bottom: 16px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            gap: 8px;
+        }
+
+        .summary-row:last-child { border-bottom: none; }
+
+        .summary-label {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.5);
+            font-weight: 500;
+        }
+
+        .summary-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-align: right;
+        }
+
+        .summary-value.empty { color: rgba(255,255,255,0.3); font-style: italic; font-weight: 400; }
+
+        /* Advisor Cards in Sidebar */
+        .sidebar-advisors-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 14px;
+        }
+
+        .advisor-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .advisor-card:hover {
+            background: rgba(255,255,255,0.09);
+            border-color: rgba(240,192,64,0.3);
+            transform: translateX(4px);
+        }
+
+        .advisor-card.selected-adv {
+            border-color: rgba(240,192,64,0.5);
+            background: rgba(240,192,64,0.07);
+        }
+
+        .advisor-avatar-wrap {
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .advisor-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(240,192,64,0.3);
+            background: linear-gradient(135deg, #1e1845, #3a2880);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            overflow: hidden;
+        }
+
+        .advisor-online-dot {
+            position: absolute;
+            bottom: 1px;
+            right: 1px;
+            width: 12px;
+            height: 12px;
+            background: #27ae60;
+            border-radius: 50%;
+            border: 2px solid #07070e;
+        }
+
+        .advisor-info-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .advisor-info-spec {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .advisor-info-rating {
+            font-size: 0.72rem;
+            color: #f0c040;
+            margin-top: 2px;
+            font-weight: 700;
+        }
+
+        .advisor-select-check {
+            margin-left: auto;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: transparent;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .advisor-card.selected-adv .advisor-select-check {
+            background: linear-gradient(135deg, #e8a820, #f0c040);
+            border-color: #f0c040;
+            color: #07070e;
+        }
+
+        /* Trust Badges */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .trust-item {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 14px 12px;
+            text-align: center;
+        }
+
+        .trust-icon { font-size: 1.4rem; margin-bottom: 6px; }
+
+        .trust-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.4;
+        }
+
+        /* =========== SUCCESS MODAL =========== */
+        .success-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(6,6,18,0.88);
+            backdrop-filter: blur(20px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .success-overlay.show { display: flex; }
+
+        .success-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 60px 56px;
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
+            animation: successPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+        }
+
+        @keyframes successPop {
+            from { opacity: 0; transform: scale(0.8) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .success-lottie {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #e8a820, #f0c040);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.6rem;
+            margin: 0 auto 28px;
+            box-shadow: 0 12px 40px rgba(240,192,64,0.4);
+            animation: bounceIn 0.7s ease both 0.3s;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            60% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .success-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #070614;
+            margin-bottom: 14px;
+        }
+
+        .success-card p {
+            font-size: 1rem;
+            color: #504c63;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .success-ticket {
+            background: #faf8f4;
+            border: 1.5px solid #e8e4da;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin: 24px 0;
+            text-align: left;
+        }
+
+        .success-ticket-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            font-size: 0.85rem;
+        }
+
+        .success-ticket-row:last-child { border-bottom: none; }
+
+        .success-ticket-label { color: #9a96ae; font-weight: 500; }
+        .success-ticket-value { color: #1a1828; font-weight: 700; font-family: 'Outfit', sans-serif; }
+
+        /* =========== RESPONSIVE =========== */
+        @media (max-width: 1024px) {
+            .booking-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .booking-sidebar {
+                position: static;
+                height: auto;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            .booking-form-pane {
+                padding: 40px 32px;
+            }
+            .booking-hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .advisor-hero-panel { display: none; }
+        }
+
+        @media (max-width: 640px) {
+            .booking-form-pane {
+                padding: 28px 20px;
+            }
+            .bk-form-grid {
+                grid-template-columns: 1fr;
+            }
+            .bk-form-grid .bk-full { grid-column: span 1; }
+            .time-slots-grid { grid-template-columns: repeat(3, 1fr); }
+            .booking-hero { padding: 120px 0 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="navbar" id="mainNav">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">🏛</div>
+                <div class="logo-text">Elite<span>Estates</span></div>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="properties.html" class="nav-link">Properties</a></li>
+                <li><a href="/booking.html" class="nav-cta active-book">Book Now</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" onclick="toggleNav()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== IMMERSIVE BOOKING HERO ===== -->
+<section class="booking-hero">
+    <div class="booking-hero-orbs">
+        <div class="bh-orb bh-orb-1"></div>
+        <div class="bh-orb bh-orb-2"></div>
+        <div class="bh-orb bh-orb-3"></div>
+    </div>
+
+    <div class="container" style="position:relative; z-index:2; width:100%;">
+        <div class="booking-hero-grid">
+            <div class="booking-hero-left">
+                <div class="booking-hero-badge">
+                    <span>●</span> Exclusive Private Viewings
+                </div>
+                <h1 class="booking-hero-title">
+                    Reserve Your<br><span>Private Tour</span>
+                </h1>
+                <p class="booking-hero-desc">
+                    Our dedicated senior advisors will personally guide you through each curated residence — at your preferred time, on your terms.
+                </p>
+            </div>
+
+            <div class="booking-hero-right">
+                <div class="advisor-hero-panel">
+                    <div class="adv-hero-card">
+                        <div class="adv-hero-avatar"><div class="adv-hero-avatar-inner">👨‍💼</div></div>
+                        <div class="adv-hero-name">Arjun Mehta</div>
+                        <div class="adv-hero-role">Mumbai Specialist</div>
+                        <div class="adv-hero-rating">★ 4.9 · 340 tours</div>
+                    </div>
+                    <div class="adv-hero-card">
+                        <div class="adv-hero-avatar" style="background: linear-gradient(135deg, #1a3060, #2a5090);"><div class="adv-hero-avatar-inner">👩‍💼</div></div>
+                        <div class="adv-hero-name">Priya Sharma</div>
+                        <div class="adv-hero-role">Luxury Leasing</div>
+                        <div class="adv-hero-rating">★ 4.8 · 220 tours</div>
+                    </div>
+                    <div class="adv-hero-card">
+                        <div class="adv-hero-avatar" style="background: linear-gradient(135deg, #0a2820, #1a5840);"><div class="adv-hero-avatar-inner">🧑‍💼</div></div>
+                        <div class="adv-hero-name">Rahul Joshi</div>
+                        <div class="adv-hero-role">Investment Expert</div>
+                        <div class="adv-hero-rating">★ 4.9 · 180 tours</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== MAIN BOOKING SECTION ===== -->
+<div class="booking-main">
+    <div class="booking-wrapper">
+
+        <!-- ======= LEFT: INTERACTIVE 3-STEP FORM ======= -->
+        <div class="booking-form-pane">
+
+            <!-- Step Progress Indicator -->
+            <div class="step-progress" id="stepProgress">
+                <div class="step-item active" id="step-ind-1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Your Info</div>
+                </div>
+                <div class="step-item" id="step-ind-2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Schedule</div>
+                </div>
+                <div class="step-item" id="step-ind-3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Preferences</div>
+                </div>
+            </div>
+
+            <!-- STEP 1: PERSONAL DETAILS -->
+            <div class="step-panel active" id="step-panel-1">
+                <h2 class="step-title">About You</h2>
+                <p class="step-subtitle">Let us know who you are so we can personalize your experience.</p>
+
+                <div class="bk-form-grid">
+                    <div class="bk-field">
+                        <label>First Name <span class="req">*</span></label>
+                        <input type="text" class="bk-input" id="bk-fname" autocomplete="given-name" placeholder="e.g. Arjun" required>
+                    </div>
+                    <div class="bk-field">
+                        <label>Last Name <span class="req">*</span></label>
+                        <input type="text" class="bk-input" id="bk-lname" autocomplete="family-name" placeholder="e.g. Mehta" required>
+                    </div>
+                    <div class="bk-field bk-full">
+                        <label>Email Address <span class="req">*</span></label>
+                        <input type="email" class="bk-input" id="bk-email" autocomplete="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="bk-field bk-full">
+                        <label>Mobile Number <span class="req">*</span></label>
+                        <div class="phone-wrap">
+                            <div class="phone-prefix-tag">+91</div>
+                            <input type="tel" class="bk-input" id="bk-phone" autocomplete="tel" placeholder="98765 43210" maxlength="12" required>
+                        </div>
+                    </div>
+                    <div class="bk-field">
+                        <label>City You're In</label>
+                        <input type="text" class="bk-input" id="bk-city" placeholder="e.g. Mumbai">
+                    </div>
+                    <div class="bk-field">
+                        <label>How did you hear about us?</label>
+                        <select class="bk-input" id="bk-source">
+                            <option value="">Select one...</option>
+                            <option value="search">Google Search</option>
+                            <option value="social">Social Media</option>
+                            <option value="referral">Friend / Referral</option>
+                            <option value="ad">Online Ad</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="step-nav-row">
+                    <button class="btn-step-next" onclick="goToStep(2)">Continue to Schedule →</button>
+                </div>
+            </div>
+
+            <!-- STEP 2: SCHEDULE YOUR TOUR -->
+            <div class="step-panel" id="step-panel-2">
+                <h2 class="step-title">Pick a Slot</h2>
+                <p class="step-subtitle">Choose your preferred date and time for the private viewing.</p>
+
+                <!-- Tour Type Cards -->
+                <div class="bk-field" style="margin-bottom:24px;">
+                    <label>Tour Format <span class="req">*</span></label>
+                    <div class="tour-type-group">
+                        <label class="tour-type-card selected" id="tour-type-inperson">
+                            <input type="radio" name="tour_type" value="in-person" checked>
+                            <div class="tour-type-icon">🏠</div>
+                            <div class="tour-type-label">In-Person</div>
+                            <div class="tour-type-desc">Private on-site viewing with advisor</div>
+                        </label>
+                        <label class="tour-type-card" id="tour-type-virtual">
+                            <input type="radio" name="tour_type" value="virtual">
+                            <div class="tour-type-icon">💻</div>
+                            <div class="tour-type-label">Virtual Tour</div>
+                            <div class="tour-type-desc">HD video walkthrough via Google Meet</div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Quick Date Chips (Next 7 days) -->
+                <div class="bk-field" style="margin-bottom:24px;">
+                    <label>Preferred Date <span class="req">*</span></label>
+                    <div class="date-chips-row" id="dateChipsRow"></div>
+                    <input type="date" class="bk-input" id="bk-custom-date" style="margin-top:10px;" title="Or pick a custom date">
+                </div>
+
+                <!-- Time Slots -->
+                <div class="bk-field" style="margin-bottom:8px;">
+                    <label>Preferred Time Slot <span class="req">*</span></label>
+                    <div class="time-slots-grid" id="timeSlotsGrid">
+                        <button class="time-slot-btn" data-time="09:00">9:00 AM</button>
+                        <button class="time-slot-btn" data-time="10:00">10:00 AM</button>
+                        <button class="time-slot-btn" data-time="11:00">11:00 AM</button>
+                        <button class="time-slot-btn unavailable" data-time="12:00">12:00 PM <small style="display:block; font-size:0.6rem;">Booked</small></button>
+                        <button class="time-slot-btn" data-time="13:00">1:00 PM</button>
+                        <button class="time-slot-btn" data-time="14:00">2:00 PM</button>
+                        <button class="time-slot-btn unavailable" data-time="15:00">3:00 PM <small style="display:block; font-size:0.6rem;">Booked</small></button>
+                        <button class="time-slot-btn" data-time="16:00">4:00 PM</button>
+                    </div>
+                    <input type="hidden" id="bk-selected-time">
+                </div>
+
+                <div class="step-nav-row">
+                    <button class="btn-step-back" onclick="goToStep(1)">← Back</button>
+                    <button class="btn-step-next" onclick="goToStep(3)">Continue →</button>
+                </div>
+            </div>
+
+            <!-- STEP 3: PREFERENCES & SUBMIT -->
+            <div class="step-panel" id="step-panel-3">
+                <h2 class="step-title">Your Preferences</h2>
+                <p class="step-subtitle">Tell us what you're looking for and we'll curate the perfect property list for your visit.</p>
+
+                <!-- Budget Range -->
+                <div class="bk-field" style="margin-bottom:24px;">
+                    <label>Your Budget Range</label>
+                    <div class="budget-range-wrap">
+                        <div class="budget-current-val" id="budgetDisplay">₹5 Cr</div>
+                        <input type="range" min="0.5" max="30" step="0.5" value="5" oninput="updateBudget(this.value)" id="budgetSlider">
+                        <div class="budget-labels"><span>₹50 L</span><span>₹30 Cr+</span></div>
+                    </div>
+                </div>
+
+                <!-- Available Properties Selector (Villas & Homes) -->
+                <div class="bk-field" style="margin-bottom:24px;">
+                    <div class="prop-selector-wrap">
+                        <div class="prop-selector-header">
+                            <div>
+                                <label class="prop-selector-title" style="display:block; margin-bottom:2px;">Select Residence of Interest</label>
+                                <span style="font-size:0.75rem; color:#706c88;">Pick a specific villa or luxury apartment for your viewing tour:</span>
+                            </div>
+                            <div class="prop-cat-pills">
+                                <button type="button" class="prop-cat-btn active" data-filter="all" onclick="filterBookingProps('all', this)">All (8)</button>
+                                <button type="button" class="prop-cat-btn" data-filter="villa" onclick="filterBookingProps('villa', this)">🏰 Villas (5)</button>
+                                <button type="button" class="prop-cat-btn" data-filter="apartment" onclick="filterBookingProps('apartment', this)">🏢 Apartments (3)</button>
+                            </div>
+                        </div>
+
+                        <!-- General Consultation Option -->
+                        <div class="booking-prop-card selected" id="prop-card-general" onclick="selectProperty(null)" style="margin-bottom:12px; align-items:center;">
+                            <div style="width:44px; height:44px; border-radius:10px; background:#f0eff8; display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0;">✨</div>
+                            <div class="bk-prop-info">
+                                <div class="bk-prop-title" style="font-size:0.92rem;">General Portfolio Consultation / Multiple Properties</div>
+                                <div class="bk-prop-loc" style="font-size:0.75rem;">Not sure yet? Our Senior Advisor will curate residences suited to your taste and budget during the tour.</div>
+                            </div>
+                            <div class="bk-prop-check">✓</div>
+                        </div>
+
+                        <!-- Dynamic Property Grid -->
+                        <div class="booking-prop-list" id="bookingPropList">
+                            <!-- Injected by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Type Tags -->
+                <div class="bk-field" style="margin-bottom:24px;">
+                    <label>Property Interest Types</label>
+                    <div class="prop-tag-group" id="propTagGroup">
+                        <span class="prop-tag" onclick="toggleTag(this)">🏢 Apartment</span>
+                        <span class="prop-tag" onclick="toggleTag(this)">🏰 Luxury Villa</span>
+                        <span class="prop-tag" onclick="toggleTag(this)">🏙️ Penthouse</span>
+                        <span class="prop-tag" onclick="toggleTag(this)">🌊 Waterfront</span>
+                        <span class="prop-tag" onclick="toggleTag(this)">🌿 Eco-Villa</span>
+                        <span class="prop-tag" onclick="toggleTag(this)">🏖️ Beachfront</span>
+                    </div>
+                </div>
+
+                <!-- Choose Advisor -->
+                <div class="bk-field" style="margin-bottom:24px;">
+                    <label>Preferred Advisor</label>
+                    <div id="advisorSelectGroup">
+                        <div class="advisor-card selected-adv" onclick="selectAdvisor(this, 'Arjun Mehta')">
+                            <div class="advisor-avatar-wrap">
+                                <div class="advisor-avatar">👨‍💼</div>
+                                <div class="advisor-online-dot"></div>
+                            </div>
+                            <div>
+                                <div class="advisor-info-name">Arjun Mehta</div>
+                                <div class="advisor-info-spec">Mumbai · Luxury Residential</div>
+                                <div class="advisor-info-rating">★ 4.9 · 340 tours completed</div>
+                            </div>
+                            <div class="advisor-select-check">✓</div>
+                        </div>
+                        <div class="advisor-card" onclick="selectAdvisor(this, 'Priya Sharma')">
+                            <div class="advisor-avatar-wrap">
+                                <div class="advisor-avatar" style="background: linear-gradient(135deg, #1a3060, #2a5090);">👩‍💼</div>
+                                <div class="advisor-online-dot"></div>
+                            </div>
+                            <div>
+                                <div class="advisor-info-name">Priya Sharma</div>
+                                <div class="advisor-info-spec">Bengaluru · Luxury Leasing</div>
+                                <div class="advisor-info-rating">★ 4.8 · 220 tours completed</div>
+                            </div>
+                            <div class="advisor-select-check">✓</div>
+                        </div>
+                        <div class="advisor-card" onclick="selectAdvisor(this, 'Rahul Joshi')">
+                            <div class="advisor-avatar-wrap">
+                                <div class="advisor-avatar" style="background: linear-gradient(135deg, #0a2820, #1a5840);">🧑‍💼</div>
+                                <div class="advisor-online-dot"></div>
+                            </div>
+                            <div>
+                                <div class="advisor-info-name">Rahul Joshi</div>
+                                <div class="advisor-info-spec">Hyderabad · Investment Expert</div>
+                                <div class="advisor-info-rating">★ 4.9 · 180 tours completed</div>
+                            </div>
+                            <div class="advisor-select-check">✓</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specific Property Notes (auto-filled on property selection or custom input) -->
+                <div class="bk-field" style="margin-bottom:24px;">
+                    <label>Selected Residence / Specific Inquiry</label>
+                    <input type="text" class="bk-input" id="propertyInterestInput" placeholder="Selected property or custom residence requirements...">
+                </div>
+
+                <!-- Special Requests -->
+                <div class="bk-field" style="margin-bottom:24px;">
+                    <label>Special Requests</label>
+                    <textarea class="bk-input" id="bk-notes" rows="2" placeholder="Anything you'd like us to arrange — NRI document needs, wheelchair access, family presence..."></textarea>
+                </div>
+
+                <!-- T&C Checkbox -->
+                <div style="margin-bottom: 8px;">
+                    <label class="bk-checkbox-label">
+                        <input type="checkbox" id="bk-agree" required>
+                        I agree to EliteEstates' <a href="#" style="color:#b57a00; font-weight:700;">Terms & Conditions</a> and consent to be contacted by our senior advisors.
+                    </label>
+                </div>
+
+                <div class="step-nav-row">
+                    <button class="btn-step-back" onclick="goToStep(2)">← Back</button>
+                    <button class="btn-step-next" onclick="submitBooking()" style="background: linear-gradient(135deg, #0a0a1a, #1b1935); color: #f0c040;">
+                        Confirm Booking ✦
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ======= RIGHT: STICKY DARK SIDEBAR ======= -->
+        <div class="booking-sidebar">
+            <div>
+                <div class="sidebar-heading">Your Booking</div>
+                <div class="sidebar-sub">Details will appear here as you fill in each step.</div>
+            </div>
+
+            <!-- Live Booking Summary -->
+            <div class="booking-summary-box">
+                <h4>Booking Summary</h4>
+                <div class="summary-row">
+                    <span class="summary-label">Name</span>
+                    <span class="summary-value empty" id="sum-name">—</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Email</span>
+                    <span class="summary-value empty" id="sum-email">—</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Phone</span>
+                    <span class="summary-value empty" id="sum-phone">—</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Tour Type</span>
+                    <span class="summary-value empty" id="sum-type">In-Person</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Date</span>
+                    <span class="summary-value empty" id="sum-date">—</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Time</span>
+                    <span class="summary-value empty" id="sum-time">—</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Advisor</span>
+                    <span class="summary-value" id="sum-advisor">Arjun Mehta</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Budget</span>
+                    <span class="summary-value" id="sum-budget">₹5 Cr</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Residence</span>
+                    <span class="summary-value" id="sum-property">General Consultation</span>
+                </div>
+            </div>
+
+            <!-- Selected Property Preview Chip in Sidebar -->
+            <div id="sidebarPropPreview" style="display:none; background:rgba(240,192,64,0.08); border:1px solid rgba(240,192,64,0.3); border-radius:14px; padding:12px; gap:12px; align-items:center;">
+                <img id="sidebarPropThumb" src="" alt="Property" style="width:58px; height:50px; border-radius:8px; object-fit:cover; border:1px solid rgba(240,192,64,0.3); flex-shrink:0;">
+                <div style="flex:1; min-width:0;">
+                    <div id="sidebarPropTitle" style="color:#ffffff; font-family:'Outfit', sans-serif; font-size:0.82rem; font-weight:800; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"></div>
+                    <div id="sidebarPropLoc" style="color:rgba(255,255,255,0.6); font-size:0.7rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"></div>
+                    <div id="sidebarPropPrice" style="color:#f0c040; font-family:'Cormorant Garamond', serif; font-size:0.95rem; font-weight:800; margin-top:2px;"></div>
+                </div>
+            </div>
+
+            <!-- Trust Badges -->
+            <div>
+                <div class="sidebar-advisors-title">Why Book With Us</div>
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <div class="trust-icon">🛡️</div>
+                        <div class="trust-label">100% Verified<br>Properties</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon">⚡</div>
+                        <div class="trust-label">Instant<br>Confirmation</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon">🔒</div>
+                        <div class="trust-icon">🔒</div>
+                        <div class="trust-label">Zero<br>Brokerage</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-icon">🤝</div>
+                        <div class="trust-label">Expert<br>Advisors 24/7</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial -->
+            <div style="background: rgba(240,192,64,0.08); border: 1px solid rgba(240,192,64,0.2); border-radius: 16px; padding: 20px;">
+                <div style="font-size: 1.3rem; margin-bottom: 8px;">⭐⭐⭐⭐⭐</div>
+                <p style="font-size: 0.82rem; color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 10px; font-style: italic;">"The private tour with Arjun was seamless. He knew every detail about the property and helped us negotiate the best deal."</p>
+                <div style="font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 700; color: #f0c040;">— Vivek N., Purchased ₹4.8 Cr Villa</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ===== SUCCESS MODAL ===== -->
+<div class="success-overlay" id="successModal">
+    <div class="success-card">
+        <div class="success-lottie">✨</div>
+        <h2>Request Received</h2>
+        <p>Your viewing request has been sent to the owner for review. We’ll email you once your appointment is confirmed.</p>
+
+        <div class="success-ticket" id="successTicket">
+            <div class="success-ticket-row">
+                <span class="success-ticket-label">Reference</span>
+                <span class="success-ticket-value" id="refCode">#EE-TOUR-2024</span>
+            </div>
+            <div class="success-ticket-row">
+                <span class="success-ticket-label">Client</span>
+                <span class="success-ticket-value" id="tick-name">—</span>
+            </div>
+            <div class="success-ticket-row">
+                <span class="success-ticket-label">Advisor</span>
+                <span class="success-ticket-value" id="tick-advisor">Arjun Mehta</span>
+            </div>
+            <div class="success-ticket-row">
+                <span class="success-ticket-label">Date & Time</span>
+                <span class="success-ticket-value" id="tick-datetime">—</span>
+            </div>
+            <div class="success-ticket-row">
+                <span class="success-ticket-label">Residence</span>
+                <span class="success-ticket-value" id="tick-property">General Consultation</span>
+            </div>
+        </div>
+
+        <p style="font-size: 0.85rem; color: #9a96ae; margin-bottom: 28px;">Your reference is saved. The confirmation email will include your appointment details after owner approval.</p>
+
+        <button class="btn-step-next" style="width: 100%;" onclick="closeSuccess()">Back to Home →</button>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo-text">Elite<span>Estates</span></div>
+                <p>Curating exceptional living experiences since 2009. We represent the finest properties across India's most prestigious addresses.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 EliteEstates. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<style>
+.nav-book.active-book {
+    background: var(--grad-gold) !important;
+    color: var(--navy) !important;
+    border-color: transparent !important;
+    box-shadow: var(--shadow-gold);
+}
+</style>
+
+<script src="app.js" defer></script>
+<script>
+    let currentStep = 1;
+    let selectedDate = '';
+    let selectedTime = '';
+    let selectedAdvisor = 'Arjun Mehta';
+    let selectedProperty = null;
+
+    // Available Properties Catalog for Selection
+    const availableProperties = [
+        {
+            id: 1,
+            title: "Auris Serenity Signature",
+            location: "Malad West, Mumbai",
+            category: "apartment",
+            typeLabel: "🏢 Apartment",
+            status: "For Sale",
+            price: "₹4.85 Cr",
+            budgetVal: 5,
+            beds: 4,
+            baths: 4,
+            area: "3,450 sq.ft",
+            feature: "West · Arabian Sea Facing",
+            image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 2,
+            title: "The Belvedere Private Estate Villas",
+            location: "Whitefield, Bengaluru",
+            category: "villa",
+            typeLabel: "🏰 Luxury Villa",
+            status: "For Rent",
+            price: "₹1,85,000 / mo",
+            budgetVal: 2,
+            beds: 5,
+            baths: 5,
+            area: "5,600 sq.ft",
+            feature: "Private Pool & 1,500 sq.ft Zen Garden",
+            image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 3,
+            title: "Trump Tower Sky Penthouse",
+            location: "Worli Sea Face, Mumbai",
+            category: "apartment",
+            typeLabel: "🏙️ Penthouse",
+            status: "New Launch",
+            price: "₹12.5 Cr",
+            budgetVal: 12.5,
+            beds: 5,
+            baths: 6,
+            area: "6,800 sq.ft",
+            feature: "68th Floor · Private Rooftop Plunge Pool",
+            image: "https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 4,
+            title: "Oceanic Views Seafront Apartment",
+            location: "Marine Drive, Mumbai",
+            category: "apartment",
+            typeLabel: "🏢 Seafront Apt",
+            status: "For Sale",
+            price: "₹3.2 Cr",
+            budgetVal: 3.5,
+            beds: 3,
+            baths: 3,
+            area: "2,450 sq.ft",
+            feature: "Full Arabian Sea & Sunset Bay Views",
+            image: "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 5,
+            title: "Orchid Enclave Hillside Villa",
+            location: "Jubilee Hills, Hyderabad",
+            category: "villa",
+            typeLabel: "🏰 Hillside Villa",
+            status: "For Rent",
+            price: "₹1,15,000 / mo",
+            budgetVal: 1.5,
+            beds: 4,
+            baths: 4,
+            area: "4,800 sq.ft",
+            feature: "Private Courtyard & Biometric Security",
+            image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 6,
+            title: "Botanica Eco-Villas",
+            location: "Electronic City, Bengaluru",
+            category: "villa",
+            typeLabel: "🌿 Eco-Villa",
+            status: "New Launch",
+            price: "₹1.5 Cr",
+            budgetVal: 1.5,
+            beds: 3,
+            baths: 3,
+            area: "2,900 sq.ft",
+            feature: "100% Net-Zero Solar Grid & EV Charger",
+            image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 7,
+            title: "Sunset Horizon Beach Mansion",
+            location: "ECR, Chennai",
+            category: "villa",
+            typeLabel: "🏰 Beach Mansion",
+            status: "For Sale",
+            price: "₹8.9 Cr",
+            budgetVal: 9,
+            beds: 6,
+            baths: 7,
+            area: "7,500 sq.ft",
+            feature: "Direct Private Beach Access & 50ft Pool",
+            image: "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=600&q=80"
+        },
+        {
+            id: 8,
+            title: "Valley View Mountain Retreat",
+            location: "Lonavala, Pune",
+            category: "villa",
+            typeLabel: "🏰 Mountain Villa",
+            status: "For Rent",
+            price: "₹2,50,000 / mo",
+            budgetVal: 2.5,
+            beds: 5,
+            baths: 5,
+            area: "5,400 sq.ft",
+            feature: "270° Valley Views & Heated Pool",
+            image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=600&q=80"
+        }
+    ];
+
+    // Render Property Cards with Category Filtering
+    function renderBookingProperties(filter = 'all') {
+        const container = document.getElementById('bookingPropList');
+        if (!container) return;
+
+        let filtered = availableProperties;
+        if (filter === 'villa') {
+            filtered = availableProperties.filter(p => p.category === 'villa');
+        } else if (filter === 'apartment') {
+            filtered = availableProperties.filter(p => p.category === 'apartment');
+        }
+
+        container.innerHTML = filtered.map(p => {
+            const isSelected = selectedProperty && selectedProperty.id === p.id;
+            return `
+                <div class="booking-prop-card ${isSelected ? 'selected' : ''}" id="prop-card-${p.id}" onclick="selectProperty(${p.id})">
+                    <img src="${p.image}" alt="${p.title}" class="bk-prop-thumb" loading="lazy">
+                    <div class="bk-prop-info">
+                        <div class="bk-prop-badge-row">
+                            <span class="bk-prop-badge">${p.typeLabel}</span>
+                            <span class="bk-prop-status">${p.status}</span>
+                        </div>
+                        <div class="bk-prop-title" title="${p.title}">${p.title}</div>
+                        <div class="bk-prop-loc">📍 ${p.location}</div>
+                        <div class="bk-prop-specs">🛏 ${p.beds} BHK · 🚿 ${p.baths} Bath · 📐 ${p.area}</div>
+                        <div class="bk-prop-price">${p.price}</div>
+                        <div style="font-size:0.7rem; color:#706c88; margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">✨ ${p.feature}</div>
+                    </div>
+                    <div class="bk-prop-check">✓</div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // Filter Buttons
+    function filterBookingProps(category, btn) {
+        document.querySelectorAll('.prop-cat-btn').forEach(b => b.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+        renderBookingProperties(category);
+    }
+
+    // Property Selection Handler
+    function selectProperty(propId) {
+        const generalCard = document.getElementById('prop-card-general');
+        const previewBox = document.getElementById('sidebarPropPreview');
+        const customInput = document.getElementById('propertyInterestInput');
+        const propSum = document.getElementById('sum-property');
+
+        if (!propId) {
+            // General Portfolio Consultation Selected
+            selectedProperty = null;
+            document.querySelectorAll('.booking-prop-card').forEach(c => c.classList.remove('selected'));
+            if (generalCard) generalCard.classList.add('selected');
+            if (previewBox) previewBox.style.display = 'none';
+            if (customInput) customInput.value = 'General Portfolio Consultation';
+            if (propSum) propSum.innerText = 'General Consultation';
+            return;
+        }
+
+        const prop = availableProperties.find(p => p.id === propId);
+        if (!prop) return;
+
+        selectedProperty = prop;
+
+        // Update card selection states
+        if (generalCard) generalCard.classList.remove('selected');
+        document.querySelectorAll('.booking-prop-card').forEach(c => c.classList.remove('selected'));
+        const activeCard = document.getElementById(`prop-card-${propId}`);
+        if (activeCard) activeCard.classList.add('selected');
+
+        // Update custom text input
+        if (customInput) {
+            customInput.value = `${prop.title} (${prop.location}) · ${prop.price}`;
+        }
+
+        // Update sidebar summary row
+        if (propSum) {
+            propSum.innerText = prop.title;
+            propSum.classList.remove('empty');
+        }
+
+        // Update sidebar preview card
+        if (previewBox) {
+            document.getElementById('sidebarPropThumb').src = prop.image;
+            document.getElementById('sidebarPropTitle').innerText = prop.title;
+            document.getElementById('sidebarPropLoc').innerText = `📍 ${prop.location}`;
+            document.getElementById('sidebarPropPrice').innerText = `${prop.price} · ${prop.beds} BHK`;
+            previewBox.style.display = 'flex';
+        }
+
+        // Auto-adjust budget slider to match property
+        const slider = document.getElementById('budgetSlider');
+        if (slider && prop.budgetVal) {
+            slider.value = prop.budgetVal;
+            updateBudget(prop.budgetVal);
+        }
+
+        // Highlight matching interest tags
+        document.querySelectorAll('#propTagGroup .prop-tag').forEach(tag => {
+            const txt = tag.textContent.toLowerCase();
+            if (prop.category === 'villa' && txt.includes('villa')) tag.classList.add('selected');
+            else if (prop.id === 3 && txt.includes('penthouse')) tag.classList.add('selected');
+            else if (prop.id === 4 && txt.includes('waterfront')) tag.classList.add('selected');
+            else if (prop.id === 6 && txt.includes('eco-villa')) tag.classList.add('selected');
+            else if (prop.id === 7 && txt.includes('beachfront')) tag.classList.add('selected');
+            else if (prop.category === 'apartment' && txt.includes('apartment') && prop.id !== 3) tag.classList.add('selected');
+        });
+    }
+
+    // ---- Navbar Scroll ----
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('mainNav');
+        if (window.scrollY > 50) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+    });
+
+    function toggleNav() {
+        document.getElementById('navMenu').classList.toggle('open');
+        document.getElementById('hamburger').classList.toggle('active');
+    }
+
+    // ---- Generate Next 7 Day Chips ----
+    function generateDateChips() {
+        const row = document.getElementById('dateChipsRow');
+        const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        row.innerHTML = '';
+        for (let i = 1; i <= 7; i++) {
+            const d = new Date();
+            d.setDate(d.getDate() + i);
+            const chip = document.createElement('div');
+            chip.className = 'date-chip';
+            chip.innerHTML = `<span class="date-chip-day">${days[d.getDay()]}</span><span class="date-chip-num">${d.getDate()}</span>`;
+            chip.dataset.date = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+            chip.onclick = function() {
+                document.querySelectorAll('.date-chip').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedDate = this.dataset.date;
+                document.getElementById('bk-custom-date').value = '';
+                updateSummary();
+            };
+            row.appendChild(chip);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        generateDateChips();
+
+        // Custom date input syncs
+        document.getElementById('bk-custom-date').addEventListener('change', function() {
+            document.querySelectorAll('.date-chip').forEach(c => c.classList.remove('selected'));
+            selectedDate = this.value;
+            updateSummary();
+        });
+        const today = new Date();
+        document.getElementById('bk-custom-date').min = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+
+        // Time slot clicks
+        document.querySelectorAll('.time-slot-btn:not(.unavailable)').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.time-slot-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedTime = this.dataset.time;
+                document.getElementById('bk-selected-time').value = selectedTime;
+                updateSummary();
+            });
+        });
+
+        // Tour type toggle
+        document.querySelectorAll('input[name="tour_type"]').forEach(input => {
+            input.addEventListener('change', function() {
+                document.querySelectorAll('.tour-type-card').forEach(c => c.classList.remove('selected'));
+                this.closest('.tour-type-card').classList.add('selected');
+                updateSummary();
+            });
+        });
+
+        // Live update summary on personal fields
+        ['bk-fname','bk-lname','bk-email','bk-phone'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('input', updateSummary);
+        });
+
+        // Initialize available properties list
+        renderBookingProperties('all');
+
+        // Pre-fill from URL param (e.g. ?property=The%20Belvedere...)
+        const urlParams = new URLSearchParams(window.location.search);
+        const propParam = urlParams.get('property');
+        if (propParam) {
+            const decoded = decodeURIComponent(propParam).trim().toLowerCase();
+            const matched = availableProperties.find(p => 
+                p.id.toString() === decoded ||
+                p.title.toLowerCase().includes(decoded) ||
+                decoded.includes(p.title.toLowerCase())
+            );
+            if (matched) {
+                selectProperty(matched.id);
+            } else {
+                const input = document.getElementById('propertyInterestInput');
+                if (input) input.value = `Interested in: ${decodeURIComponent(propParam)}`;
+                const propSum = document.getElementById('sum-property');
+                if (propSum) propSum.innerText = decodeURIComponent(propParam);
+            }
+        }
+
+        // Live sync if user manually types into the residence field
+        const customInput = document.getElementById('propertyInterestInput');
+        if (customInput) {
+            customInput.addEventListener('input', function() {
+                const val = this.value.trim();
+                if (selectedProperty && val !== `${selectedProperty.title} (${selectedProperty.location}) · ${selectedProperty.price}`) {
+                    document.querySelectorAll('.booking-prop-card').forEach(c => c.classList.remove('selected'));
+                    document.getElementById('prop-card-general')?.classList.add('selected');
+                    selectedProperty = null;
+                    const previewBox = document.getElementById('sidebarPropPreview');
+                    if (previewBox) previewBox.style.display = 'none';
+                }
+                const propSum = document.getElementById('sum-property');
+                if (propSum) {
+                    propSum.innerText = val || 'General Consultation';
+                }
+            });
+        }
+    });
+
+    // ---- Step Navigation ----
+    function goToStep(n) {
+        if (n === 2 && !validateStep1()) return;
+        if (n === 3 && !validateStep2()) return;
+        if (n > 0 && n <= 3) {
+            document.getElementById(`step-panel-${currentStep}`).classList.remove('active');
+            document.getElementById(`step-ind-${currentStep}`).classList.remove('active');
+            if (n > currentStep) document.getElementById(`step-ind-${currentStep}`).classList.add('completed');
+            else document.getElementById(`step-ind-${n + 1}`)?.classList.remove('completed');
+
+            currentStep = n;
+            document.getElementById(`step-panel-${currentStep}`).classList.add('active');
+            document.getElementById(`step-ind-${currentStep}`).classList.remove('completed');
+            document.getElementById(`step-ind-${currentStep}`).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+
+    function validateStep1() {
+        const fname = document.getElementById('bk-fname').value.trim();
+        const lname = document.getElementById('bk-lname').value.trim();
+        const email = document.getElementById('bk-email').value.trim();
+        const phone = document.getElementById('bk-phone').value.trim();
+
+        let valid = true;
+        if (!fname) { highlight('bk-fname'); valid = false; }
+        if (!lname) { highlight('bk-lname'); valid = false; }
+        if (!document.getElementById('bk-email').checkValidity()) { highlight('bk-email'); valid = false; }
+        if (!phone || phone.length < 8) { highlight('bk-phone'); valid = false; }
+
+        if (!valid) shakePanel('step-panel-1');
+        return valid;
+    }
+
+    function validateStep2() {
+        if (!selectedDate) {
+            alert('Please select a preferred date for your tour.');
+            return false;
+        }
+        if (!selectedTime) {
+            alert('Please select a time slot for your tour.');
+            return false;
+        }
+        return true;
+    }
+
+    function highlight(id) {
+        const el = document.getElementById(id);
+        el.classList.add('error');
+        el.focus();
+        setTimeout(() => el.classList.remove('error'), 3000);
+    }
+
+    function shakePanel(id) {
+        const panel = document.getElementById(id);
+        panel.style.animation = 'none';
+        panel.style.transform = 'translateX(-8px)';
+        setTimeout(() => {
+            panel.style.transform = 'translateX(8px)';
+            setTimeout(() => {
+                panel.style.transform = '';
+                panel.style.animation = '';
+            }, 120);
+        }, 120);
+    }
+
+    // ---- Budget Slider ----
+    function updateBudget(val) {
+        const display = parseFloat(val) >= 1 ? `₹${val} Cr` : `₹${Math.round(val * 100)} L`;
+        document.getElementById('budgetDisplay').innerText = display;
+        document.getElementById('sum-budget').innerText = display;
+    }
+
+    // ---- Property Tags ----
+    function toggleTag(el) {
+        el.classList.toggle('selected');
+    }
+
+    // ---- Advisor Selection ----
+    function selectAdvisor(card, name) {
+        document.querySelectorAll('.advisor-card').forEach(c => c.classList.remove('selected-adv'));
+        card.classList.add('selected-adv');
+        selectedAdvisor = name;
+        document.getElementById('sum-advisor').innerText = name;
+        document.getElementById('sum-advisor').classList.remove('empty');
+    }
+
+    // ---- Live Summary Update ----
+    function updateSummary() {
+        const fname = document.getElementById('bk-fname').value.trim();
+        const lname = document.getElementById('bk-lname').value.trim();
+        const email = document.getElementById('bk-email').value.trim();
+        const phone = document.getElementById('bk-phone').value.trim();
+        const tourType = document.querySelector('input[name="tour_type"]:checked');
+
+        setSum('sum-name', fname || lname ? `${fname} ${lname}`.trim() : null);
+        setSum('sum-email', email || null);
+        setSum('sum-phone', phone ? `+91 ${phone}` : null);
+        setSum('sum-type', tourType ? (tourType.value === 'in-person' ? 'In-Person' : 'Virtual HD') : null);
+        setSum('sum-date', selectedDate ? formatDate(selectedDate) : null);
+        setSum('sum-time', selectedTime ? formatTime(selectedTime) : null);
+
+        // Synchronize Residence row in summary
+        const propSumEl = document.getElementById('sum-property');
+        if (propSumEl) {
+            if (selectedProperty) {
+                propSumEl.innerText = selectedProperty.title;
+                propSumEl.classList.remove('empty');
+            } else {
+                const manual = document.getElementById('propertyInterestInput')?.value.trim();
+                propSumEl.innerText = manual || 'General Consultation';
+                propSumEl.classList.remove('empty');
+            }
+        }
+    }
+
+    function setSum(id, val) {
+        const el = document.getElementById(id);
+        if (val) {
+            el.innerText = val;
+            el.classList.remove('empty');
+        } else {
+            el.innerText = '—';
+            el.classList.add('empty');
+        }
+    }
+
+    function formatDate(d) {
+        const date = new Date(d);
+        return date.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
+    }
+
+    function formatTime(t) {
+        const [h, m] = t.split(':').map(Number);
+        const ampm = h >= 12 ? 'PM' : 'AM';
+        const hour = h % 12 || 12;
+        return `${hour}:${m.toString().padStart(2,'0')} ${ampm}`;
+    }
+
+    // ---- Submit Booking ----
+    async function submitBooking() {
+        const agree = document.getElementById('bk-agree').checked;
+        if (!agree) {
+            alert('Please agree to the Terms & Conditions to proceed.');
+            return;
+        }
+
+        if (!validateStep1() || !validateStep2()) return;
+        const value = id => document.getElementById(id).value.trim();
+        const button = document.querySelector('#step-panel-3 .btn-step-next');
+        button.disabled = true; button.textContent = 'Sending request…';
+        try {
+            const chosenResidence = selectedProperty ? `${selectedProperty.title} (${selectedProperty.location})` : (value('propertyInterestInput') || 'General Portfolio Consultation');
+            const result = await window.eliteApi('/api/bookings', {
+                name: `${value('bk-fname')} ${value('bk-lname')}`.trim(), email: value('bk-email'), phone: value('bk-phone'), city: value('bk-city'),
+                date: selectedDate, time: selectedTime, tourType: document.querySelector('input[name="tour_type"]:checked')?.value,
+                advisor: selectedAdvisor, budget: document.getElementById('budgetSlider').value,
+                interests: [...document.querySelectorAll('.prop-tag.selected')].map(tag => tag.textContent.trim()),
+                property: chosenResidence, notes: value('bk-notes'), source: value('bk-source'), consent: agree
+            });
+            document.getElementById('refCode').innerText = `#${result.reference}`;
+            document.getElementById('tick-name').innerText = `${value('bk-fname')} ${value('bk-lname')}`.trim();
+            document.getElementById('tick-advisor').innerText = selectedAdvisor;
+            document.getElementById('tick-datetime').innerText = `${formatDate(selectedDate)} · ${formatTime(selectedTime)}`;
+            const tickProp = document.getElementById('tick-property');
+            if (tickProp) {
+                tickProp.innerText = selectedProperty ? selectedProperty.title : (value('propertyInterestInput') || 'General Consultation');
+            }
+            document.getElementById('successModal').classList.add('show'); document.body.style.overflow = 'hidden';
+        } catch (error) {
+            const message = error instanceof TypeError
+                ? 'The booking server could not be reached. Keep Live Server open, run .\\start-backend.ps1 in a second terminal, and make sure the API is running on port 3000.'
+                : error.message;
+            alert(message);
+        }
+        finally { button.disabled = false; button.textContent = 'Confirm Booking ✦'; }
+    }
+
+    function closeSuccess() {
+        document.getElementById('successModal').classList.remove('show');
+        document.body.style.overflow = 'auto';
+        window.location.href = 'index.html';
+    }
+</script>
+</body>
+</html>

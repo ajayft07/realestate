@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Elite Estates — Premium Real Estate Platform. Find luxury homes, villas, and apartments for sale and rent.">
+    <title>Elite Estates | Luxury Real Estate</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Specific Layout Overrides for Index.html */
+        
+        /* 1. Cinematic Centered Hero */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 150px;
+            padding-bottom: 60px;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .hero-title {
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            margin-bottom: 20px;
+        }
+        
+        .hero-desc {
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Overlapping Search Box */
+        .hero-search-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 40px;
+            transform: translateY(40px); /* Pulls it down slightly over the next section */
+            z-index: 20;
+            position: relative;
+        }
+        
+        .search-glass {
+            box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            border-color: rgba(255,255,255,0.15);
+        }
+        
+        .search-glass input {
+            background: rgba(255,255,255,0.9);
+            color: var(--navy);
+            border: none;
+        }
+        
+        /* Hide the old visual */
+        .hero-visual { display: none; }
+
+        /* 2. Horizontal Scrolling Properties */
+        .horizontal-scroller {
+            display: flex;
+            gap: 32px;
+            overflow-x: auto;
+            padding: 20px 0 60px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE and Edge */
+        }
+        
+        .horizontal-scroller::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
+        }
+        
+        .horizontal-scroller .property-card {
+            flex: 0 0 400px;
+            scroll-snap-align: start;
+        }
+
+        /* 3. Zig-Zag Lifestyle Layout */
+        .zigzag-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+        
+        .zigzag-row:nth-child(even) .zigzag-img {
+            order: 2;
+        }
+        
+        .zigzag-row:nth-child(even) .zigzag-text {
+            order: 1;
+        }
+        
+        .zigzag-img-wrap {
+            height: 450px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+        
+        .zigzag-text h3 {
+            font-size: 2.35rem;
+            margin-bottom: 18px;
+            color: #070614;
+            font-weight: 700;
+        }
+        
+        .zigzag-text p {
+            font-size: 1.15rem;
+            color: #1a1829;
+            font-weight: 500;
+            line-height: 1.85;
+            margin-bottom: 30px;
+        }
+        
+        .feature-icon-wrap.large {
+            width: 80px; height: 80px;
+            font-size: 2.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .zigzag-row {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .zigzag-row:nth-child(even) .zigzag-img,
+            .zigzag-row:nth-child(even) .zigzag-text {
+                order: unset;
+            }
+            .horizontal-scroller .property-card {
+                flex: 0 0 300px;
+            }
+            .hero-search-wrapper {
+                transform: translateY(0);
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="navbar" id="mainNav">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo" id="navLogo">
+                <div class="logo-icon">🏛</div>
+                <div class="logo-text">Elite<span>Estates</span></div>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="properties.html" class="nav-link">Properties</a></li>
+                <li><a href="/booking.html" class="nav-cta">Book Now</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" onclick="toggleNav()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== IMMERSIVE HERO ===== -->
+<section class="hero" id="heroSection">
+    <div class="hero-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="container" style="position:relative; z-index:2; width:100%;">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                India's Premier Real Estate
+            </div>
+
+            <h1 class="hero-title">
+                Find Your <span class="line-2">Dream Property</span>
+            </h1>
+
+            <p class="hero-desc">
+                Step into a world of elegance. Discover exclusive luxury homes, premium apartments, and unparalleled investment opportunities curated by expert advisors.
+            </p>
+
+            <!-- Quick Action Options - Maximum Contrast & Bold Visibility -->
+            <div class="hero-actions reveal delay-4" style="margin-top: 40px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="properties.html" class="btn btn-primary" style="padding: 18px 36px; font-size: 1.1rem; border-radius: var(--radius-full); font-weight: 700;">
+                    Explore Collection
+                </a>
+                <a href="/booking.html" class="btn btn-hero-outline" style="padding: 18px 36px; font-size: 1.1rem; border-radius: var(--radius-full);">
+                    Schedule a Tour
+                </a>
+                <a href="about.html" class="btn btn-hero-advisor" style="padding: 18px 36px; font-size: 1.1rem; border-radius: var(--radius-full);">
+                    Meet Our Advisors →
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FEATURED PROPERTIES (Horizontal Scroll) ===== -->
+<section id="featured" style="padding-top: 120px; background: var(--cream);">
+    <div class="container" style="max-width: 1600px;"> <!-- Wider container for scroll effect -->
+        <div class="section-header reveal" style="padding: 0 40px;">
+            <span class="section-label">Featured Collection</span>
+            <h2 class="section-title">Exclusive <span class="italic">Residences</span></h2>
+            <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+                <p class="section-subtitle" style="margin:0;">Swipe to explore our curated selection of the finest properties.</p>
+                <a href="properties.html" class="btn btn-ghost-gold" style="padding: 10px 24px;">View All →</a>
+            </div>
+        </div>
+
+        <!-- Horizontal Scroller -->
+        <div class="horizontal-scroller reveal delay-2" style="padding: 20px 40px 60px;">
+            <!-- Property 1 -->
+            <article class="property-card" onclick="window.location.href='properties.html'">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" alt="Auris Serenity Signature" class="card-img-slide">
+                    <span class="card-badge badge-sale">For Sale</span>
+                    <button class="card-wishlist" onclick="event.stopPropagation();">♡</button>
+                    <span class="photo-count-badge">📷 5 Photos</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-price-row">
+                        <div class="card-price">₹4.85 Cr</div>
+                        <span class="card-emi-tag">EMI ₹3.4L/mo</span>
+                    </div>
+                    <h3 class="card-title">Auris Serenity Signature</h3>
+                    <p class="card-location">📍 Malad West, Mumbai</p>
+                    <div class="card-specs-strip">
+                        <span class="card-spec-item"><span class="spec-icon">🛏</span>4 BHK</span>
+                        <span class="card-spec-item"><span class="spec-icon">🚿</span>4 Bath</span>
+                        <span class="card-spec-item"><span class="spec-icon">📐</span>3,450 sq.ft</span>
+                    </div>
+                    <div class="card-package-box">
+                        <div class="package-header">
+                            <span class="package-name">💎 Platinum Package</span>
+                            <span class="package-badge-tag">Included</span>
+                        </div>
+                        <ul class="package-highlights-list">
+                            <li>Italian Statuario Marble + Designer Kitchen</li>
+                            <li>3 Reserved Automated EV Parking Bays</li>
+                            <li>3-Year Zero Maintenance & Concierge Care</li>
+                        </ul>
+                    </div>
+                    <div class="card-bottom-actions">
+                        <button class="btn-card-details" onclick="window.location.href='properties.html'">Explore Villa & Package →</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Property 2 -->
+            <article class="property-card" onclick="window.location.href='properties.html'">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80" alt="The Belvedere Villas" class="card-img-slide">
+                    <span class="card-badge badge-rent">For Rent</span>
+                    <button class="card-wishlist" onclick="event.stopPropagation();">♡</button>
+                    <span class="photo-count-badge">📷 5 Photos</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-price-row">
+                        <div class="card-price">₹1,85,000 <span style="font-size:0.9rem; font-weight:500;">/ mo</span></div>
+                        <span class="card-emi-tag">Zero Brokerage</span>
+                    </div>
+                    <h3 class="card-title">The Belvedere Villas</h3>
+                    <p class="card-location">📍 Whitefield, Bengaluru</p>
+                    <div class="card-specs-strip">
+                        <span class="card-spec-item"><span class="spec-icon">🛏</span>5 BHK</span>
+                        <span class="card-spec-item"><span class="spec-icon">🚿</span>5 Bath</span>
+                        <span class="card-spec-item"><span class="spec-icon">📐</span>5,600 sq.ft</span>
+                    </div>
+                    <div class="card-package-box">
+                        <div class="package-header">
+                            <span class="package-name">👑 Royal Estate Package</span>
+                            <span class="package-badge-tag">VIP Lease</span>
+                        </div>
+                        <ul class="package-highlights-list">
+                            <li>Fully Furnished by Restoration Hardware</li>
+                            <li>Private Heated Pool & 1,500 sq.ft Zen Garden</li>
+                            <li>Dedicated Housekeeping & 10kW Solar Grid</li>
+                        </ul>
+                    </div>
+                    <div class="card-bottom-actions">
+                        <button class="btn-card-details" onclick="window.location.href='properties.html'">Explore Villa & Package →</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Property 3 -->
+            <article class="property-card" onclick="window.location.href='properties.html'">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=800&q=80" alt="Trump Tower Penthouse" class="card-img-slide">
+                    <span class="card-badge badge-new">New Launch</span>
+                    <button class="card-wishlist" onclick="event.stopPropagation();">♡</button>
+                    <span class="photo-count-badge">📷 5 Photos</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-price-row">
+                        <div class="card-price">₹12.5 Cr</div>
+                        <span class="card-emi-tag">Top 68th Floor</span>
+                    </div>
+                    <h3 class="card-title">Trump Tower Sky Penthouse</h3>
+                    <p class="card-location">📍 Worli Sea Face, Mumbai</p>
+                    <div class="card-specs-strip">
+                        <span class="card-spec-item"><span class="spec-icon">🛏</span>5 BHK</span>
+                        <span class="card-spec-item"><span class="spec-icon">🚿</span>6 Bath</span>
+                        <span class="card-spec-item"><span class="spec-icon">📐</span>6,800 sq.ft</span>
+                    </div>
+                    <div class="card-package-box">
+                        <div class="package-header">
+                            <span class="package-name">🏙️ Presidential Sky Package</span>
+                            <span class="package-badge-tag">Elite</span>
+                        </div>
+                        <ul class="package-highlights-list">
+                            <li>Private Infinity Plunge Pool + Skyline Deck</li>
+                            <li>Private High-Speed Foyer Elevator</li>
+                            <li>5 Years Zero Maintenance + 5 Valet Bays</li>
+                        </ul>
+                    </div>
+                    <div class="card-bottom-actions">
+                        <button class="btn-card-details" onclick="window.location.href='properties.html'">Explore Villa & Package →</button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Property 4 -->
+            <article class="property-card" onclick="window.location.href='properties.html'">
+                <div class="card-image-wrap">
+                    <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=800&q=80" alt="Oceanic Views Appt." class="card-img-slide">
+                    <span class="card-badge badge-sale">For Sale</span>
+                    <button class="card-wishlist" onclick="event.stopPropagation();">♡</button>
+                    <span class="photo-count-badge">📷 5 Photos</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-price-row">
+                        <div class="card-price">₹3.2 Cr</div>
+                        <span class="card-emi-tag">Sea-Facing</span>
+                    </div>
+                    <h3 class="card-title">Oceanic Views Appt.</h3>
+                    <p class="card-location">📍 Marine Drive, Mumbai</p>
+                    <div class="card-specs-strip">
+                        <span class="card-spec-item"><span class="spec-icon">🛏</span>3 BHK</span>
+                        <span class="card-spec-item"><span class="spec-icon">🚿</span>3 Bath</span>
+                        <span class="card-spec-item"><span class="spec-icon">📐</span>2,450 sq.ft</span>
+                    </div>
+                    <div class="card-package-box">
+                        <div class="package-header">
+                            <span class="package-name">🌊 Marine Heritage Package</span>
+                            <span class="package-badge-tag">Ready</span>
+                        </div>
+                        <ul class="package-highlights-list">
+                            <li>Arabian Sea Bay Windows + Daikin Central HVAC</li>
+                            <li>Control4 iPad Home Automation Suite</li>
+                            <li>2 Covered Parking + 2-Yr Pre-paid Maintenance</li>
+                        </ul>
+                    </div>
+                    <div class="card-bottom-actions">
+                        <button class="btn-card-details" onclick="window.location.href='properties.html'">Explore Villa & Package →</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ===== EXCLUSIVE LIFESTYLE SECTION (Zig-Zag) ===== -->
+<section style="background: var(--white); overflow:hidden;">
+    <div class="container">
+        <div class="section-header centered reveal">
+            <span class="section-label">Lifestyle</span>
+            <h2 class="section-title">More Than Just a <span class="italic">Home</span></h2>
+            <p class="section-subtitle">We believe in matching you not just with a property, but with a neighborhood that perfectly complements your ambitions and taste.</p>
+        </div>
+
+        <!-- Zig-Zag Row 1 -->
+        <div class="zigzag-row">
+            <div class="zigzag-img reveal-left">
+                <div class="zigzag-img-wrap" style="background:#0a0a1a;">
+                    <img src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=1000&q=80" alt="Golf Course Living" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+            <div class="zigzag-text reveal-right">
+                <div class="feature-icon-wrap large">🏌️‍♂️</div>
+                <h3>Golf Course Living</h3>
+                <p>Wake up to the serene beauty of lush green fairways. Our exclusive golf estate properties offer private clubhouse privileges, sweeping manicured views, and a community of like-minded individuals who appreciate the finer things in life.</p>
+                <a href="properties.html" class="btn btn-outline-dark" style="padding: 14px 34px; border-radius: var(--radius-full);">Explore Golf Estates</a>
+            </div>
+        </div>
+
+        <!-- Zig-Zag Row 2 -->
+        <div class="zigzag-row">
+            <div class="zigzag-img reveal-right">
+                <div class="zigzag-img-wrap" style="background:#0a0a1a;">
+                    <img src="https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=1000&q=80" alt="Waterfront Estates" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+            <div class="zigzag-text reveal-left">
+                <div class="feature-icon-wrap large">🌊</div>
+                <h3>Waterfront Estates</h3>
+                <p>Experience the ultimate tranquility of oceanfront and lakeview properties. Step out of your private villa directly onto a private deck or yacht marina. The perfect setting for those who find peace by the water.</p>
+                <a href="properties.html" class="btn btn-outline-dark" style="padding: 14px 34px; border-radius: var(--radius-full);">Explore Waterfronts</a>
+            </div>
+        </div>
+
+        <!-- Zig-Zag Row 3 -->
+        <div class="zigzag-row">
+            <div class="zigzag-img reveal-left">
+                <div class="zigzag-img-wrap" style="background:#0a0a1a;">
+                    <img src="https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=1000&q=80" alt="Penthouse Panoramas" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+            <div class="zigzag-text reveal-right">
+                <div class="feature-icon-wrap large">🏙️</div>
+                <h3>Penthouse Panoramas</h3>
+                <p>Own the skyline. Our curated selection of ultra-luxury sky mansions in the Central Business District offers unmatched panoramic views of the city, private plunge pools, and private elevator access.</p>
+                <a href="properties.html" class="btn btn-outline-dark" style="padding: 14px 34px; border-radius: var(--radius-full);">Explore Penthouses</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== CTA BANNER ===== -->
+<section class="cta-banner reveal">
+    <div class="cta-grid-overlay"></div>
+    <div class="container" style="position:relative; z-index:2;">
+        <h2>Ready to Elevate Your Lifestyle?</h2>
+        <p>Schedule a private consultation with our luxury real estate experts and discover properties not available on the open market.</p>
+        <div class="cta-btns">
+            <a href="/booking.html" class="btn btn-primary">Request a Callback</a>
+            <a href="contact.html" class="btn btn-outline">Talk to an Expert</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand reveal">
+                <div class="footer-logo-text">Elite<span>Estates</span></div>
+                <p>Curating exceptional living experiences since 2009. We represent the finest properties across India's most prestigious addresses.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">in</a>
+                    <a href="#" class="social-link">fb</a>
+                    <a href="#" class="social-link">ig</a>
+                </div>
+            </div>
+            
+            <div class="footer-col reveal delay-1">
+                <h4>Discover</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col reveal delay-2">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Buying</a></li>
+                    <li><a href="#">Selling</a></li>
+                    <li><a href="#">Renting</a></li>
+                    <li><a href="#">Property Management</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col reveal delay-3">
+                <h4>Exclusive Insights</h4>
+                <p style="font-size:0.85rem;color:rgba(255,255,255,0.6);margin-bottom:16px;">Subscribe to our newsletter for off-market listings and market reports.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Email Address" required>
+                    <button type="submit">→</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2024 EliteEstates. All Rights Reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="app.js" defer></script>
+<script>
+    // Page-specific wishlist behavior.
+    // Wishlist Toggle
+    document.querySelectorAll('.card-wishlist').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isActive = this.style.background === 'rgb(231, 76, 60)';
+            this.style.background = isActive ? 'rgba(255,255,255,0.9)' : '#e74c3c';
+            this.style.color = isActive ? '' : '#fff';
+            this.textContent = isActive ? '♡' : '♥';
+        });
+    });
+</script>
+</body>
+</html>

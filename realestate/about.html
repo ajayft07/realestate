@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — Elite Estates</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="navbar" id="mainNav">
+    <div class="container">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">🏛</div>
+                <div class="logo-text">Elite<span>Estates</span></div>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="properties.html" class="nav-link">Properties</a></li>
+                <li><a href="/booking.html" class="nav-cta">Book Now</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" onclick="toggleNav()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== PAGE BANNER ===== -->
+<header class="page-banner">
+    <div class="page-banner-glow"></div>
+    <div class="container">
+        <div class="page-banner-content">
+            <span class="section-label">✦ Heritage</span>
+            <h1>Our Story</h1>
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <span>About Us</span>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- ===== ABOUT INTRO ===== -->
+<section class="about-intro-section">
+    <div class="container">
+        <div class="about-intro">
+            <div class="reveal-left">
+                <span class="section-label">The Vision</span>
+                <h2 class="section-title">Redefining <span class="italic">Luxury Living</span> in India</h2>
+                <p class="section-subtitle" style="margin-bottom: 24px;">Founded in 2009, Elite Estates has grown from a boutique agency in Mumbai to India's most trusted luxury real estate platform. We believe that a home is more than just an address—it is the ultimate expression of personal achievement and refined taste.</p>
+                <p class="section-subtitle" style="margin-bottom: 32px;">Our team of seasoned experts provides unparalleled market knowledge, discreet service, and access to properties that simply aren't available on the open market.</p>
+                
+                <div class="skill-bars">
+                    <div class="skill-item">
+                        <div class="skill-header"><span>Premium Residential Sales</span> <span>95%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 95%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header"><span>Luxury Leasing</span> <span>88%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 88%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header"><span>Commercial & Investment</span> <span>92%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" style="width: 92%;"></div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-visual reveal">
+                <div class="about-main-box" style="overflow:hidden; border-radius:18px;">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Elite Estates Architecture" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="about-sec-box" style="overflow:hidden; border-radius:14px; border:3px solid #ffffff;">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" alt="Luxury Villa Architecture" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div class="about-experience-badge">
+                    <div class="exp-number">15+</div>
+                    <div class="exp-label">Years of Excellence</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== MISSION & VALUES ===== -->
+<section class="about-values-section">
+    <div class="container">
+        <div class="section-header centered reveal">
+            <span class="section-label">Our Philosophy</span>
+            <h2 class="section-title">Mission & <span class="italic">Values</span></h2>
+        </div>
+        
+        <div class="mission-grid">
+            <div class="mission-card reveal delay-1">
+                <div class="icon">🎯</div>
+                <h3>Uncompromising Quality</h3>
+                <p>We represent only the finest properties built by tier-1 developers with clear titles and impeccable construction quality.</p>
+            </div>
+            <div class="mission-card reveal delay-2">
+                <div class="icon">🤝</div>
+                <h3>Absolute Integrity</h3>
+                <p>Complete transparency in pricing, legal documentation, and advisory. We treat your investment as if it were our own.</p>
+            </div>
+            <div class="mission-card reveal delay-3">
+                <div class="icon">✨</div>
+                <h3>Bespoke Service</h3>
+                <p>Every client is unique. We provide tailored recommendations and end-to-end concierge services for a seamless experience.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TIMELINE ===== -->
+<section class="about-journey-section">
+    <div class="container">
+        <div class="section-header centered reveal">
+            <span class="section-label">Journey</span>
+            <h2 class="section-title">Our <span class="italic">Milestones</span></h2>
+        </div>
+        
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <div class="timeline-year">2009</div>
+                <div class="timeline-content">
+                    <h3>Inception</h3>
+                    <p>Founded in a small office in South Mumbai with a focus on ultra-luxury apartments in the island city.</p>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-year">2014</div>
+                <div class="timeline-content">
+                    <h3>National Expansion</h3>
+                    <p>Opened flagship offices in Delhi NCR and Bengaluru, expanding our portfolio to include premium villas and estates.</p>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-year">2018</div>
+                <div class="timeline-content">
+                    <h3>Digital Transformation</h3>
+                    <p>Launched India's first fully immersive virtual property viewing platform, revolutionizing the buying experience for NRIs.</p>
+                </div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-content">
+                    <h3>Industry Leaders</h3>
+                    <p>Surpassed ₹850 Crores in closed transactions and recognized as "Luxury Agency of the Year" for the 3rd consecutive time.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== AWARDS ===== -->
+<section class="awards-section">
+    <div class="container">
+        <div class="section-header centered reveal">
+            <span class="section-label">Recognition</span>
+            <h2 class="section-title">Awards & <span class="italic">Accolades</span></h2>
+        </div>
+        
+        <div class="awards-grid">
+            <div class="award-card reveal delay-1">
+                <div class="award-icon">🏆</div>
+                <div class="award-name">Luxury Broker of the Year</div>
+                <div class="award-org">Realty Plus 2023</div>
+            </div>
+            <div class="award-card reveal delay-2">
+                <div class="award-icon">⭐</div>
+                <div class="award-name">Best Tech Innovation</div>
+                <div class="award-org">PropTech Awards 2022</div>
+            </div>
+            <div class="award-card reveal delay-3">
+                <div class="award-icon">🥇</div>
+                <div class="award-name">Top Sales Partner</div>
+                <div class="award-org">Lodha Luxury 2023</div>
+            </div>
+            <div class="award-card reveal delay-4">
+                <div class="award-icon">🌟</div>
+                <div class="award-name">Customer Excellence</div>
+                <div class="award-org">Estate Awards 2021</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo-text">Elite<span>Estates</span></div>
+                <p>Curating exceptional living experiences since 2009.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Discover</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="properties.html">Properties</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 EliteEstates. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="app.js" defer></script>
+<script>
+    // Scroll Reveal
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left');
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>
